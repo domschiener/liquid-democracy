@@ -4,6 +4,8 @@ contract NewPoll {
     bytes32 title;
     //stringified options array
     string options;
+    // The type (i.e. domain) of the poll
+    bytes32 type;
     uint deadline;
     bool status;
     uint numVotes;
@@ -19,9 +21,10 @@ contract NewPoll {
   Poll public p;
 
   //initiator function that stores the necessary poll information
-  function NewPoll(bytes32 _title, string _options, uint _deadline) {
-    p.options = _options;
+  function NewPoll(bytes32 _title, string _options, bytes32 _type, uint _deadline) {
     p.title = _title;
+    p.options = _options;
+    p.type = _type;
     p.deadline = _deadline;
     p.status = true;
     p.numVotes = 0;
