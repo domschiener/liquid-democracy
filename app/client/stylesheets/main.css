@@ -1,0 +1,234 @@
+body,
+html {
+  font-family: 'Raleway', sans-serif;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/**
+  *     Navbar Styles
+  **/
+
+.navbar {
+  position: fixed;
+  background-color: rgba(242,242,242, 0.80);
+  width: 100%;
+  height: 60px;
+  left: 0;
+  top: 0;
+  box-shadow: 0px 1px 1px 0px rgba(100, 100, 100, 0.2);
+  border: 1px solid transparent;
+  z-index: 10;
+}
+
+.navbar__elements {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  -webkit-flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+.navbar__elements li {
+  text-decoration: none;
+  display: block;
+  margin: 10px 20px;
+  float: left;
+  font-size: 20px;
+}
+
+.navbar__button {
+  height: 40px;
+  width: 160px;
+  font-size: 22px;
+  background-color: rgb(221,92,81);
+}
+
+/**
+ **   Landing Page Styles
+ **/
+
+.landing {
+  width: 100%;
+  height: 100%;
+}
+
+.landing__background {
+  background-color: #fff;
+  background-image: url('graph2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -5;
+}
+
+.landing__content {
+  position: absolute;
+  color: #000;
+  text-align: center;
+  margin: 22% auto;
+  left: 0;
+  right: 0;
+  width: 60%;
+}
+
+.landing__title {
+  font-size: 54px;
+  font-weight: 500;
+}
+
+.landing__btndiv {
+  margin: 50px 0;
+  text-align: center;
+}
+
+.landing__button {
+  width: 280px;
+  height: 60px;
+  font-size: 28px;
+  background-color: #32699b;
+}
+
+.buttons {
+  white-space: nowrap;
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+  transition: 0.1s all ease;
+  color: #fff;
+  box-shadow: 0px 0px 0px 0px #B8B8B8;
+  border-bottom: 1px solid #1A4164;
+  outline: 0;
+}
+
+.buttons:hover {
+  background-color: #427BAE ;
+  top: -2px;
+  border-bottom: 2px solid #1A4164;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.buttons:active {
+  top: 0px;
+  border: 1px solid #1A4164;
+  background-color: #255988;
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.buttons::-moz-focus-inner {
+  border: 0;
+}
+
+.buttons a {
+  outline: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+/**
+  *     Current Issues Section
+  **/
+
+.intro {
+  width: 100%;
+  height: 450px;
+  min-height: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.intro div {
+  align-self: center;
+  height: 100%;
+}
+
+.intro__title {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 300;
+  text-align: center;
+  width: auto;
+  z-index: 1000;
+}
+
+.intro__explanation {
+  background-color: rgb(47,164,178);
+  width: 70%;
+}
+
+.intro__summary {
+  color: #fff;
+  font-size: 22px;
+  padding: 0px 80px;
+  text-align: center;
+}
+
+.intro__summary p {
+  text-align: justify;
+}
+
+.intro__learnmore {
+  width: 180px;
+  height: 40px;
+  font-size: 22px;
+  background-color: rgb(252,104,85);
+  white-space: nowrap;
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+  transition: 0.1s all ease;
+  color: #fff;
+  box-shadow: 0px 0px 0px 0px #B8B8B8;
+  border-bottom: 1px solid #c95344;
+  outline: 0;
+  margin: 20px 0;
+}
+
+.intro__learnmore:hover {
+  background-color: #fc6855;
+  top: -2px;
+  border-bottom: 2px solid #c95344;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.intro__learnmore:active {
+  top: 0px;
+  border: 1px solid #c95344;
+  background-color: #fc6855;
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.intro__learnmore::-moz-focus-inner {
+  border: 0;
+}
+
+.intro__learnmore a {
+  outline: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+
+
+.intro__summary a {
+  color:
+}
+
+.intro__list {
+  background-color: rgb(252,104,85);
+  width: 30%;
+}

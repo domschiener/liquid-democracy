@@ -1,0 +1,3 @@
+Router.route('/', {
+  template: 'main'
+});
