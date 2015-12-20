@@ -1,0 +1,31 @@
+<template name="dashboard_menu">
+  <ul id="gn-menu" class="gn-menu-main">
+    <li class="gn-trigger">
+      <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+      <nav class="gn-menu-wrapper">
+        <div class="gn-scroller">
+          <ul class="gn-menu">
+            <li class="gn-search-item">
+              <input placeholder="Search" type="search" class="gn-search">
+              <a class="gn-icon gn-icon-search"><span>Search</span></a>
+            </li>
+            <li>
+              <a class="gn-icon gn-icon-download">Downloads</a>
+            </li>
+            <li><a class="gn-icon gn-icon-cog">Settings</a></li>
+            <li><a class="gn-icon gn-icon-help">Help</a></li>
+            <li>
+              <a class="gn-icon gn-icon-archive">Archives</a>
+            </li>
+          </ul>
+        </div><!-- /gn-scroller -->
+      </nav>
+    </li>
+    <li><a href="/">Profile Here</a></li>
+  </ul>
+
+  {{> yield}}
+  <!-- <script>
+    new gnMenu( document.getElementById( 'gn-menu' ) );
+  </script> -->
+</template>
