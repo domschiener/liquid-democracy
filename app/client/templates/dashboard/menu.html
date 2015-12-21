@@ -5,27 +5,24 @@
       <nav class="gn-menu-wrapper">
         <div class="gn-scroller">
           <ul class="gn-menu">
-            <li class="gn-search-item">
-              <input placeholder="Search" type="search" class="gn-search">
-              <a class="gn-icon gn-icon-search"><span>Search</span></a>
+            <li>
+              <a href="{{pathFor route='dashboard'}}" class="gn-icon gn-icon-home">Home</a>
             </li>
             <li>
-              <a class="gn-icon gn-icon-download">Downloads</a>
+              <a href="{{pathFor route='vote'}}" class="gn-icon gn-icon-vote">Vote</a>
             </li>
-            <li><a class="gn-icon gn-icon-cog">Settings</a></li>
-            <li><a class="gn-icon gn-icon-help">Help</a></li>
             <li>
-              <a class="gn-icon gn-icon-archive">Archives</a>
+              <a class="gn-icon gn-icon-delegate">Delegates</a>
+            </li>
+            <li>
+              <a class="gn-icon gn-icon-cog">Settings</a>
             </li>
           </ul>
-        </div><!-- /gn-scroller -->
+        </div>
       </nav>
     </li>
     <li><a href="/">Profile Here</a></li>
   </ul>
 
   {{> yield}}
-  <!-- <script>
-    new gnMenu( document.getElementById( 'gn-menu' ) );
-  </script> -->
 </template>

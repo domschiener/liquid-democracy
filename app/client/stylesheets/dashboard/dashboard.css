@@ -1,0 +1,173 @@
+/**
+  *   Main Dashboard Styles
+  **/
+
+.dashboard,
+.vote {
+  width: 100%;
+  background-color: #F8F3F0;
+  top: 60px;
+  overflow: hidden;
+  margin: 60px 0 0;
+}
+
+
+/**
+  *   Dashboard Top
+  **/
+
+.dashboard__top {
+  max-width: 1080px;
+  margin: 60px auto 0;
+  height: 650px;
+}
+
+.dashboard__top_title {
+  font-size: 34px;
+  margin: 35px 0;
+  word-spacing: -20px;
+}
+
+.panel-title {
+  font-size: 20px;
+}
+
+.panel_button {
+  margin: 10px 30px;
+}
+
+/**
+  *   Dashboard Activity
+  **/
+
+.dashboard__activity {
+  height: 500px;
+  width: 500px;
+  padding: 0;
+  margin-right: 25px;
+  overflow: hidden;
+}
+
+.dashboard__feed {
+  list-style:none;
+  overflow-y: scroll;
+  max-height: 500px;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard__feed_item {
+  height: 50px;
+  margin: 6px 0;
+}
+
+.feed__voted_left,
+.feed__delegate_left,
+.feed__addition_left {
+  height: 100%;
+  z-index: 100;
+}
+
+.feed__voted_icon {
+  height: 100%;
+  width: 100%;
+  border: 2px solid #2e611f;
+  border-radius: 100%;
+  background-color: #F8F3F0;
+}
+
+.feed__addition_icon {
+  height: 100%;
+  width: 100%;
+  border: 2px solid #4b1048;
+  border-radius: 100%;
+  background-color: #F8F3F0;
+}
+
+.feed__voted_icon,
+.feed__voted_right,
+.feed__delegate_icon,
+.feed__delegate_right,
+.feed__addition_icon,
+.feed__addition_right {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.feed__voted_icon span {
+  color: #4da335;
+  font-size: 34px;
+}
+
+.feed__addition_icon span {
+  color: #5d275a;
+  font-size: 32px;
+}
+
+.feed__voted_right {
+  height: 100%;
+  margin-left: -56px;
+  background-color: #2e611f;
+  border-radius: 25px;
+  color: #fff;
+}
+
+.feed__delegate_right {
+  height: 100%;
+  margin-left: -56px;
+  background-color: #253F7B;
+  border-radius: 25px;
+  color: #fff;
+}
+
+.feed__addition_right {
+  height: 100%;
+  margin-left: -56px;
+  background-color: #4B1048;
+  border-radius: 25px;
+  color: #fff;
+}
+
+.feed__message {
+  margin: 0;
+  padding: 0;
+}
+
+.feed__picture {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+
+/**
+  *   Dashboard Stats
+  **/
+
+.dashboard__stats {
+  max-width: 1080px;
+  margin: 60px auto 0;
+}
+
+.dashboard__stats_title {
+  font-size: 34px;
+  margin: 35px 0;
+}
+
+.dashboard__stats_global,
+.dashboard__stats_personal {
+  height: 500px;
+  width: 500px;
+  background-color: #fff;
+  padding: 0;
+  margin-right: 25px;
+  border: 1px solid #c6d0da;
+  border-radius: 5px;
+}

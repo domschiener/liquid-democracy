@@ -8,3 +8,10 @@ Router.route('/dashboard', function() {
 }, {
   name: 'dashboard'
 });
+
+Router.route('/dashboard/vote', function() {
+  this.layout('dashboard_menu');
+  this.render('vote');
+}, {
+  name: 'vote'
+});
