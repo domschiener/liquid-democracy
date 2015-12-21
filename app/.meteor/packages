@@ -18,3 +18,5 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 iron:router
 twbs:bootstrap
+hilios:jquery.countdown
+ctjp:meteor-bootstrap-switch

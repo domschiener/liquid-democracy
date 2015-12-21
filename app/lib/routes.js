@@ -15,3 +15,10 @@ Router.route('/dashboard/vote', function() {
 }, {
   name: 'vote'
 });
+
+Router.route('/dashboard/create', function() {
+  this.layout('dashboard_menu');
+  this.render('create');
+}, {
+  name: 'create'
+});
