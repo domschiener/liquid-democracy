@@ -4,6 +4,37 @@
       <div class="issues__title">
         <span class="gn-icon gn-icon-vote" aria-hidden="true">Current Issues</span>
       </div>
+      <div class="col-xs-3 issues__item">
+        <div class="issues__item-title panel-heading">
+          <h2 class="panel-title panel__title">What is going wrong?</h2>
+        </div>
+        <div class="issues__item-info">
+          <div class="col-xs-4 panel__created">
+            <h4>Created at</h4>
+            <span>12.12.2015</span>
+          </div>
+          <div class="col-xs-4 panel__domain">
+            <h4>Domain</h4>
+            <span class="label label-default">Main</span>
+          </div>
+          <div class="col-xs-4 panel__votes">
+            <h4>Votes</h4>
+            <span>215</span>
+          </div>
+        </div>
+        <div class="issues__item-description panel-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee.
+        </div>
+        <button type="button" class="btn btn-success panel_button">Vote</button>
+      </div>
+
+    </div>
+  </section>
+  <section class="past_votes">
+    <div class="issues">
+      <div class="issues__title">
+        <span class="gn-icon gn-icon-vote" aria-hidden="true">Past Issues</span>
+      </div>
       <!-- <div class="col-xs-12 issues__list">
         <div class="issues__item">
 
@@ -11,15 +42,15 @@
       </div> -->
 
       <div class="issues__list" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default issues__item">
-          <div class="panel-heading" role="tab" id="headingOne">
+        <div class="panel panel-default past__votes-item">
+          <div class="panel-heading" role="tab" id="headingOne1">
             <h2 class="panel-title panel__title">
-              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
                 How will we manage this?
               </a>
             </h2>
           </div>
-          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1">
             <div class="panel__extra">
               <div class="col-xs-4 panel__created">
                 <h4>Created at</h4>
@@ -40,15 +71,15 @@
             <button type="button" class="btn btn-success panel_button">Vote</button>
           </div>
         </div>
-        <div class="panel panel-default issues__item">
-          <div class="panel-heading" role="tab" id="headingTwo">
+        <div class="panel panel-default past__votes-item">
+          <div class="panel-heading" role="tab" id="headingTwo2">
             <h4 class="panel-title panel__title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
                 Should the CEO be fired?
               </a>
             </h4>
           </div>
-          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div id="collapseTwo2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo2">
             <div class="panel__extra">
               <div class="col-xs-4 panel__created">
                 <h4>Created at</h4>
@@ -69,15 +100,15 @@
             <button type="button" class="btn btn-success panel_button">Vote</button>
           </div>
         </div>
-        <div class="panel panel-default issues__item">
-          <div class="panel-heading" role="tab" id="headingThree">
+        <div class="panel panel-default past__votes-item">
+          <div class="panel-heading" role="tab" id="headingThree3">
             <h4 class="panel-title panel__title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3">
                 Should we invest $50 Million?
               </a>
             </h4>
           </div>
-          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div id="collapseThree3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree3">
             <div class="panel__extra">
               <div class="col-xs-4 panel__created">
                 <h4>Created at</h4>
@@ -99,10 +130,6 @@
           </div>
         </div>
       </div>
-
-
-
-
     </div>
   </section>
 </template>
