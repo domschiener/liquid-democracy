@@ -1,0 +1,37 @@
+.issues {
+  max-width: 1080px;
+  margin: 60px auto 0;
+}
+
+.issues__title {
+  font-size: 34px;
+  margin: 35px 0;
+  text-align: center;
+}
+
+.issues__item {
+  max-width: 750px;
+  border: 1px solid #c6c2c0;
+  border-radius: 5px;
+  margin: 10px auto;
+}
+
+.panel__title a {
+  font-size: 28px;
+  text-decoration: none;
+  outline: 0;
+}
+
+.panel-body {
+  clear: both;
+}
+
+.panel__extra {
+  text-align: center;
+}
+
+.panel__created,
+.panel__domain,
+.panel__votes {
+  margin: 15px 0;
+}
