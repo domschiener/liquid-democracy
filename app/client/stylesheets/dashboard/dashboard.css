@@ -155,6 +155,7 @@
 .dashboard__stats {
   max-width: 1080px;
   margin: 60px auto 0;
+  min-height: 100%;
 }
 
 .dashboard__stats_title {
@@ -162,13 +163,23 @@
   margin: 35px 0;
 }
 
-.dashboard__stats_global,
-.dashboard__stats_personal {
-  height: 500px;
-  width: 500px;
+.dashboard__stats_global {
   background-color: #fff;
   padding: 0;
-  margin-right: 25px;
-  border: 1px solid #c6d0da;
+  margin: 25px auto 50px;
+
+}
+
+.dashboard__stats_global div {
+  height: 200px;
+  width: 250px;
+  margin: 0 5px 50px;
+  border: 2px solid #ccc;
   border-radius: 5px;
+}
+
+.global__stats_title {
+  text-align: center;
+  margin-top: 35px;
+  font-size: 28px;
 }

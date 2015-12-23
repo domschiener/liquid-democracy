@@ -20,3 +20,5 @@ iron:router
 twbs:bootstrap
 hilios:jquery.countdown
 ctjp:meteor-bootstrap-switch
+accounts-github
+accounts-twitter
