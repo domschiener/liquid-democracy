@@ -60,12 +60,24 @@
 
                       <!-- Other Settings for Poll -->
                       <div class="col-md-6 public_settings">
-                        <h5>Time Limit</h5>
+                        <div class="col-xs-6">
+                          <h5>Time Limit</h5>
 
-                        <!-- Time Limit: Number -->
-                        <div class="row">
-                          <div class="col-xs-3 testtt">
-                            {{> timelimit}}
+                          <!-- Time Limit: Number -->
+                          <div class="row">
+                            <div class="col-xs-3 testtt">
+                              {{> timelimit}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-6">
+                          <h5>Domain</h5>
+
+                          <!-- Time Limit: Number -->
+                          <div class="row">
+                            <div class="col-xs-3 testtt">
+
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -101,4 +113,8 @@
       <option value="{{this}}">{{this}} Day(s)</option>
     {{/each}}
   </select>
+</template>
+
+<template name="domains">
+
 </template>

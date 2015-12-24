@@ -33,18 +33,19 @@
 
 .gn-menu-main,
 .gn-menu-main ul {
-		margin: 0;
-		padding: 0;
-		background: white;
-		color: #5f6f81;
-		list-style: none;
-		text-transform: none;
-		font-weight: 300;
-		line-height: 60px;
+	margin: 0;
+	padding: 0;
+	background: white;
+	color: #5f6f81;
+	list-style: none;
+	text-transform: none;
+	font-weight: 300;
+	line-height: 60px;
 }
 
 .gn-menu-main ul {
 	border-right: 1px solid #c6d0da;
+	outline: 0;
 }
 
 .gn-menu-main {
@@ -64,6 +65,7 @@
 		color: #5f6f81;
 		text-decoration: none;
 		cursor: pointer;
+		outline: 0;
 }
 
 .no-touch .gn-menu-main a:hover,

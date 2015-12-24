@@ -22,6 +22,7 @@
       </nav>
     </li>
     <li><a href="/">{{ currentUser.profile.name }}</a></li>
+    <li><a href="{{pathFor route='create'}}">Create Issue</a></li>
   </ul>
 
   {{> yield}}

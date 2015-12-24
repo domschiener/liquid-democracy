@@ -180,6 +180,11 @@
 
 .global__stats_title {
   text-align: center;
-  margin-top: 35px;
+  margin: 35px 0;
   font-size: 28px;
+}
+
+.global__stats_item {
+  text-align: center;
+  font-size: 30px;
 }

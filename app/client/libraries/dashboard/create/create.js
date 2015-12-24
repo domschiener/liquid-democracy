@@ -1,7 +1,7 @@
 Template.create.rendered = function() {
   Session.set('NumberOfOptions', 2);
   Session.set('pagenum', 0);
-  
+
   $(function() {
     var img_cnt = $('li.activate').index() + 1;
 
@@ -44,6 +44,42 @@ Template.create.rendered = function() {
     });
   });
 }
+
+Template.create.events({
+  'click #submit': function() {
+    event.preventDefault();
+    num_options = Session.get('NumberOfOptions');
+    var poll = {
+      'name': '',
+      'description': '',
+      'options': '',
+      'domain': '',
+      'isactive':false,
+      'isvoted':false,
+      'ready':false
+    }
+
+    poll['name']= $('#name_poll').val();
+    poll['description'] = $('#description').val();
+    var option = [];
+    for (var i = 1; i <= num_options; i++) {
+      element_id = "#option-" + i;
+      option.push($(element_id).val());
+    }
+
+    poll['options'] = option;
+    //poll['multi_option'] = $('#multi_option_switch').is(":checked");
+    var hours = $('#hour_limit option:selected').text();
+    var days = $('#day_limit option:selected').text();
+
+    poll['limit_hours'] = parseInt(hours.match(/\d+/)[0]);
+    poll['limit_days'] = parseInt(days.match(/\d+/)[0]);
+    console.log(poll);
+    // Meteor.call('post_data', poll, function(error, success) {
+    //   Router.go('vote', {_id: success});
+    // });
+  }
+})
 
 Template.timelimit.helpers({
   hours: function(){
