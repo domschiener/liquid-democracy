@@ -7,8 +7,7 @@ Router.route('/join', {
   template: 'login',
   onBeforeAction: function() {
     if(Meteor.user()) {
-      var route = "/dashboard";
-      Router.go(route);
+      Router.go('dashboard');
     } else {
       this.next();
     }
@@ -23,8 +22,7 @@ Router.route('/dashboard', {
     if(Meteor.user()) {
       this.next();
     } else {
-      var route = "/join";
-      Router.go(route);
+      Router.go('join');
     }
   }
 });
@@ -37,8 +35,7 @@ Router.route('/dashboard/vote', {
     if(Meteor.user()) {
       this.next();
     } else {
-      var route = "/join";
-      Router.go(route);
+      Router.go('join');
     }
   }
 });
@@ -51,8 +48,7 @@ Router.route('/dashboard/create', {
     if(Meteor.user()) {
       this.next();
     } else {
-      var route = "/join";
-      Router.go(route);
+      Router.go('join');
     }
   }
 });
