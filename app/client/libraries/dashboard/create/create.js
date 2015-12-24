@@ -1,6 +1,11 @@
 Template.create.rendered = function() {
   Session.set('NumberOfOptions', 2);
-  Session.set('pagenum', 0);
+
+  $(".domain_select").select2({
+    width: 200,
+    placeholder: "Select an option",
+    allowClear: true
+  });
 
   $(function() {
     var img_cnt = $('li.activate').index() + 1;
@@ -18,7 +23,7 @@ Template.create.rendered = function() {
     })
 
     $('#nxt').click(function() {
-      $('#nxt').removeClass("fadeInUp").addClass('fadeOutDown');
+      $('#nxt').removeClass("fadeInUp").addClass('hide fadeOutDown');
 
       if ($('.progress-form li').hasClass('activate')) {
 
@@ -36,10 +41,6 @@ Template.create.rendered = function() {
         $('.img_amt').html(img_amt);
         var progress = ($('.img_cnt').text() / $('.img_amt').text()) * 100;
         $('.progress-bar').css("width", progress + "%");
-        Session.set('pagenum', img_cnt);
-        if (Session.get('pagenum') == 2) {
-          $('#nxt').removeClass("hide fadeOutDown").addClass("fadeInUp");
-        }
       }
     });
   });
@@ -47,16 +48,15 @@ Template.create.rendered = function() {
 
 Template.create.events({
   'click #submit': function() {
+    console.log("here");
     event.preventDefault();
     num_options = Session.get('NumberOfOptions');
     var poll = {
       'name': '',
       'description': '',
       'options': '',
-      'domain': '',
-      'isactive':false,
-      'isvoted':false,
-      'ready':false
+      'isactive': false,
+      'isvoted': false,
     }
 
     poll['name']= $('#name_poll').val();
@@ -71,6 +71,8 @@ Template.create.events({
     //poll['multi_option'] = $('#multi_option_switch').is(":checked");
     var hours = $('#hour_limit option:selected').text();
     var days = $('#day_limit option:selected').text();
+
+    poll['domain'] = $("#domain_select").select2("val");
 
     poll['limit_hours'] = parseInt(hours.match(/\d+/)[0]);
     poll['limit_days'] = parseInt(days.match(/\d+/)[0]);
