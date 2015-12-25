@@ -2,14 +2,14 @@
   <header class="landing landing__background">
     <nav class="navbar">
       <ul class="navbar__elements">
-        <li><button class="navbar__button"><a href="#">Join Now</a></button></li>
+        <li><button class="navbar__button"><a href="{{pathFor route='join'}}">Join Now</a></button></li>
         <li><a href="#">About</a></li>
       </ul>
     </nav>
     <div class="landing__content">
       <h1 class="landing__title">Liquid Democracy powered by Ethereum</h1>
       <div class="landing__btndiv">
-        <button class="landing__button buttons"><a href="#">Try Now</a></button>
+        <button class="landing__button buttons"><a href="{{pathFor route='join'}}">Try Now</a></button>
       </div>
     </div>
   </header>
@@ -74,7 +74,7 @@
     <div class="join__overlay"></div>
     <div class="join__text">
       <h1 class="join__text_title">Join the Action now</h1>
-      <button class="join__text_button">Start Voting</button>
+      <button href="{{pathFor route='join'}}" class="join__text_button">Start Voting</button>
       <p class="join__text_subtitle">More than <span>150</span> are already writing</p>
     </div>
   </section>

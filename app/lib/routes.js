@@ -19,7 +19,8 @@ Router.route('/dashboard', {
   layoutTemplate: 'dashboard_menu',
   template: 'dashboard',
   onBeforeAction: function() {
-    if(Meteor.user()) {
+    var user =  Meteor.userId();
+    if(user) {
       this.next();
     } else {
       Router.go('join');
@@ -32,7 +33,22 @@ Router.route('/dashboard/vote', {
   layoutTemplate: 'dashboard_menu',
   template: 'vote',
   onBeforeAction: function() {
-    if(Meteor.user()) {
+    var user =  Meteor.userId();
+    if(user) {
+      this.next();
+    } else {
+      Router.go('join');
+    }
+  }
+});
+
+Router.route('/dashboard/vote/:_id', {
+  name: 'poll',
+  layoutTemplate: 'dashboard_menu',
+  template: 'poll',
+  onBeforeAction: function() {
+    var user =  Meteor.userId();
+    if(user) {
       this.next();
     } else {
       Router.go('join');
@@ -45,7 +61,8 @@ Router.route('/dashboard/create', {
   layoutTemplate: 'dashboard_menu',
   template: 'create',
   onBeforeAction: function() {
-    if(Meteor.user()) {
+    var user =  Meteor.userId();
+    if(user) {
       this.next();
     } else {
       Router.go('join');
