@@ -32,6 +32,10 @@ Router.route('/dashboard/vote', {
   name: 'vote',
   layoutTemplate: 'dashboard_menu',
   template: 'vote',
+  data: function() {
+    var active_polls = poll.find({}).fetch();
+    return {'polls': active_polls};
+  },
   onBeforeAction: function() {
     var user =  Meteor.userId();
     if(user) {

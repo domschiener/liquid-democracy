@@ -4,30 +4,37 @@
       <div class="issues__title">
         <span class="gn-icon gn-icon-vote" aria-hidden="true">Current Issues</span>
       </div>
-      <div class="col-xs-3 issues__item">
-        <div class="issues__item-title panel-heading">
-          <h2 class="panel-title panel__title">What is going wrong?</h2>
-        </div>
-        <div class="issues__item-info">
-          <div class="col-xs-4 panel__created">
-            <h4>Created at</h4>
-            <span>12.12.2015</span>
+      {{#each polls}}
+        <div class="col-xs-3 issues__item">
+          <div class="issues__item-title panel-heading">
+            <h2 class="panel-title panel__title">
+              {{this.poll.name}}
+            </h2>
           </div>
-          <div class="col-xs-4 panel__domain">
-            <h4>Domain</h4>
-            <span class="label label-default">Main</span>
+          <div class="issues__item-info">
+            <div class="col-xs-4 panel__created">
+              <h4>Created at</h4>
+              <span>
+                {{this.createdAt}}
+              </span>
+            </div>
+            <div class="col-xs-4 panel__domain">
+              <h4>Domain</h4>
+              {{#each this.poll.domain}}
+                <span class="label label-default">{{this}}</span>
+              {{/each}}
+            </div>
+            <div class="col-xs-4 panel__votes">
+              <h4>Votes</h4>
+              <span>215</span>
+            </div>
           </div>
-          <div class="col-xs-4 panel__votes">
-            <h4>Votes</h4>
-            <span>215</span>
+          <div class="issues__item-description panel-body">
+            {{this.poll.description}}
           </div>
+          <button type="button" class="btn btn-success panel_button">Vote</button>
         </div>
-        <div class="issues__item-description panel-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee.
-        </div>
-        <button type="button" class="btn btn-success panel_button">Vote</button>
-      </div>
-
+      {{/each}}
     </div>
   </section>
   <section class="past_votes">

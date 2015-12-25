@@ -68,6 +68,12 @@
 		outline: 0;
 }
 
+.menu_glyphicon {
+	font-weight: 300;
+	word-spacing: -10px;
+	line-height: 60px;
+}
+
 .no-touch .gn-menu-main a:hover,
 .no-touch .gn-menu li.gn-search-item:hover,
 .no-touch .gn-menu li.gn-search-item:hover a {
@@ -148,57 +154,6 @@
 .gn-menu li:not(:first-child),
 .gn-menu li li {
 		box-shadow: inset 0 1px #c6d0da
-}
-
-/* placeholder */
-
-.gn-search::-webkit-input-placeholder {
-		color: #5f6f81
-}
-
-.gn-search:-moz-placeholder {
-		color: #5f6f81
-}
-
-.gn-search::-moz-placeholder {
-		color: #5f6f81
-}
-
-.gn-search:-ms-input-placeholder {
-		color: #5f6f81
-}
-
-/* hide placeholder when active in Chrome */
-
-.gn-search:focus::-webkit-input-placeholder,
-.no-touch .gn-menu li.gn-search-item:hover .gn-search:focus::-webkit-input-placeholder {
-		color: transparent
-}
-
-input.gn-search:focus {
-		cursor: text
-}
-
-.no-touch .gn-menu li.gn-search-item:hover input.gn-search {
-		color: white
-}
-
-/* placeholder */
-
-.no-touch .gn-menu li.gn-search-item:hover .gn-search::-webkit-input-placeholder {
-		color: white
-}
-
-.no-touch .gn-menu li.gn-search-item:hover .gn-search:-moz-placeholder {
-		color: white
-}
-
-.no-touch .gn-menu li.gn-search-item:hover .gn-search::-moz-placeholder {
-		color: white
-}
-
-.no-touch .gn-menu li.gn-search-item:hover .gn-search:-ms-input-placeholder {
-		color: white
 }
 
 .gn-icon::before {

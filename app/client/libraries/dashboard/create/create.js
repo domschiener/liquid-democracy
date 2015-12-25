@@ -77,9 +77,10 @@ Template.create.events({
     poll['limit_hours'] = parseInt(hours.match(/\d+/)[0]);
     poll['limit_days'] = parseInt(days.match(/\d+/)[0]);
     console.log(poll);
-    // Meteor.call('post_data', poll, function(error, success) {
-    //   Router.go('vote', {_id: success});
-    // });
+    
+    Meteor.call('post_data', poll, function(error, success) {
+      console.log(success);
+    });
   }
 })
 
