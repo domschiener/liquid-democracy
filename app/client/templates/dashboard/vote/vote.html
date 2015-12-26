@@ -32,7 +32,7 @@
           <div class="issues__item-description panel-body">
             {{this.poll.description}}
           </div>
-          <button type="button" class="btn btn-success panel_button">Vote</button>
+          <a href="{{pathFor route='poll'}}" type="button" class="btn btn-success panel_button">Vote</a>
         </div>
       {{/each}}
     </div>

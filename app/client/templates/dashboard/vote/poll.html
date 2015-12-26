@@ -1,5 +1,45 @@
 <template name="poll">
-  <section class="poll">
+  <section class="poll__section">
+    <ul class="rainbow_border">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <div class="poll">
+      <div class="poll__title">
+        <span>{{this.poll.name}}</span>
+      </div>
 
+      <div class="poll__description">
+        <p>{{this.poll.description}}</p>
+      </div>
+
+      <div class="poll__options">
+        <h4 class="vote_small">Vote</h4>
+
+        {{#if option_count this.poll.options.length}}
+          <!--TODO: Change color randomly for options -->
+          <div class="two_options row">
+            <div id="{{single_option 0 poll.options}}" class="option_one option_click">
+              <h3 id="{{single_option 0 poll.options}}" class="option_display">{{single_option 0 poll.options}}</h3>
+            </div>
+            <div class="between">
+              <h2>VS.</h2>
+            </div>
+            <div id="{{single_option 1 poll.options}}" class="option_two option_click">
+              <h3 id="{{single_option 1 poll.options}}" class="option_display">{{single_option 1 poll.options}}</h3>
+            </div>
+          </div>
+        {{else}}
+          <div class="multi_options row">
+          {{#each poll.options}}
+            <button id="{{this}}" class="btn multi_option option_click"><h3 id="{{this}}">{{this}}</h3></button>
+          {{/each}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
   </section>
 </template>

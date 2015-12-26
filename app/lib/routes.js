@@ -50,6 +50,9 @@ Router.route('/dashboard/vote/:_id', {
   name: 'poll',
   layoutTemplate: 'dashboard_menu',
   template: 'poll',
+  data: function() {
+    return poll.findOne({_id: this.params._id});
+  },
   onBeforeAction: function() {
     var user =  Meteor.userId();
     if(user) {

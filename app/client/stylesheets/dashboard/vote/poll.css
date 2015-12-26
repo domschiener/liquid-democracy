@@ -1,0 +1,163 @@
+.poll__section {
+  width: 100%;
+  min-height: 100%;
+  background-color: #F8F3F0;
+  top: 60px;
+  overflow: hidden;
+  margin: 60px 0 0;
+}
+
+.poll {
+  max-width: 750px;
+  min-height: 550px;
+  background-color: #fff;
+  text-align: center;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin: 0 auto 15px;
+  padding: 25px;
+}
+
+.rainbow_border {
+  max-width: 750px;
+  padding: 0;
+  list-style:none;
+  width: auto;
+  font-size:0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  margin: 50px auto 0;
+  overflow: hidden;
+}
+
+.rainbow_border li {
+  display: inline-block;
+  width: 20%;
+  height: 20px;
+}
+
+.rainbow_border li:nth-child(1) {
+  background:#2ecc71;
+}
+
+.rainbow_border li:nth-child(2) {
+  background:#3498db;
+}
+
+.rainbow_border li:nth-child(3) {
+  background:#f1c40f;
+}
+
+.rainbow_border li:nth-child(4) {
+  background:#e74c3c;
+}
+
+.rainbow_border li:nth-child(5) {
+  background:#9b59b6;
+}
+
+.poll__title {
+  font-size: 56px;
+}
+
+.poll__description {
+  margin: 35px auto 80px;
+  font-size: 20px;
+  font-weight: 200;
+  text-align: center;
+}
+
+.vote_small {
+  position: relative;
+  width: 80px;
+  background-color: #fff;
+  top: -12px;
+  margin: 0 auto 50px;
+  padding-left: 4px;
+}
+
+/**
+  *   Poll Options
+  **/
+
+.poll__options {
+  border-top: 2px solid #000;
+}
+
+/** If only two options **/
+
+.two_options {
+  color: #fff;
+}
+
+.option_one {
+  float: left;
+  clear: none;
+  height: 120px;
+  width: 50%;
+  position: relative;
+  overflow: visible;
+  background-color: #3498db;
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.option_two {
+  float: right;
+  clear: none;
+  height: 120px;
+  min-width: 50%;
+  width: auto;
+  position: relative;
+  overflow: visible;
+  background-color: #2ecc71;
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option_one:hover, .option_two:hover {
+  cursor: pointer;
+}
+
+.option_display {
+  font-size: 45px;
+}
+
+.between {
+  height: 120px;
+  width: 120px;
+  background-color: rgb(58,65,86);
+  position: absolute;
+  overflow: hidden;
+  margin: auto;
+  z-index: 1;
+  border-radius: 50%;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/** Multiple Options **/
+
+.multi_options {
+  display: inline-block;
+  text-align: center;
+}
+
+.multi_option {
+  margin: 20px;
+  min-width: 200px;
+  min-height: 120px;
+  background-color: #f1c40f;
+  border-radius: 4px;
+}
