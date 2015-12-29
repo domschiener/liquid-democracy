@@ -56,10 +56,31 @@ Router.route('/dashboard/vote/:_id', {
   onBeforeAction: function() {
     var user =  Meteor.userId();
     if(user) {
+      Session.set('current_poll', this.params._id);
       this.next();
     } else {
       Router.go('join');
     }
+  }
+});
+
+Router.route('/dashboard/vote/:_id/voted', {
+  name: 'voted',
+  layoutTemplate: 'dashboard_menu',
+  template: 'voted',
+  data: function() {
+    return poll.findOne({_id: this.params._id});
+  },
+  onBeforeAction: function() {
+    var user =  Meteor.userId();
+    if(user) {
+      Session.set('current_poll', this.params._id);
+      this.next();
+    } else {
+      Router.go('join');
+    }
+
+
   }
 });
 

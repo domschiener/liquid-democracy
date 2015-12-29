@@ -1,0 +1,27 @@
+<template name="voted">
+  <section class="poll__section">
+    <ul class="rainbow_border">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <div class="poll">
+      <div class="poll__title">
+        <span>{{this.poll.name}}</span>
+      </div>
+
+      <div class="poll__description">
+        <p>{{this.poll.description}}</p>
+      </div>
+
+      <div class="poll__options">
+        <h4 class="vote_small">Voted</h4>
+
+        {{> highchartsHelper chartId="test" chartWidth="100%" charHeight="100%" chartObject=topGenresChart}}
+
+      </div>
+    </div>
+  </section>
+</template>
