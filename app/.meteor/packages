@@ -20,6 +20,6 @@ iron:router
 twbs:bootstrap
 accounts-twitter
 natestrauser:select2
-accounts-github
 service-configuration
 maazalik:highcharts
+accounts-github

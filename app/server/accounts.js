@@ -4,6 +4,6 @@ ServiceConfiguration.configurations.remove({
 
 ServiceConfiguration.configurations.insert({
   service: "github",
-  clientId: "b9316f9fe8aa7b13b2f8",
-  secret: "a5e28db524c15de0deb055043dc2b439763e5920"
+  clientId: "92bcdf4098968f44c0a7",
+  secret: "26f843aced68cd0ea3cc5fd1f0e1039fcd869d87"
 });

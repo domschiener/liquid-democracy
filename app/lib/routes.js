@@ -14,6 +14,16 @@ Router.route('/join', {
   }
 });
 
+Router.route('/logout', {
+  name: 'logout',
+  template: 'login',
+  onRun: function() {
+    Meteor.logout();
+    Router.go('join');
+    this.next();
+  }
+});
+
 Router.route('/dashboard', {
   name: 'dashboard',
   layoutTemplate: 'dashboard_menu',
