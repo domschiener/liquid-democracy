@@ -8,6 +8,9 @@ html {
   box-sizing: border-box;
 }
 
+button:focus {
+  outline: 0 !important;
+}
 
 /**
   *     Navbar Styles

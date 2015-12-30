@@ -107,3 +107,17 @@ Router.route('/dashboard/create', {
     }
   }
 });
+
+Router.route('/dashboard/delegates/', {
+  name: 'delegates',
+  layoutTemplate: 'dashboard_menu',
+  template: 'delegates',
+  onBeforeAction: function() {
+    var user =  Meteor.userId();
+    if(user) {
+      this.next();
+    } else {
+      Router.go('join');
+    }
+  }
+})
