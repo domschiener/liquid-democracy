@@ -185,14 +185,12 @@ font-size: 24px;
 
 .select2-selection,
 .select2-selection--multiple {
-  background-color: #3498db !important;
-  border: 2px solid #ccc !important;
+  background-color: #fff !important;
 }
 
 .select2-search__field {
   width: 200px !important;
   font-size: 16px !important;
-
 }
 
 .select2-selection__choice {

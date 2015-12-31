@@ -9,12 +9,50 @@
 
       <div class="col-xs-3 delegate__profile">
         <div class="delegate__profile-picture">
-          <button class="btn btn-success become-delegate">
+          <button class="btn btn-success become-delegate" data-toggle="modal" data-target="#becomeDelegate">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
           </button>
         </div>
         <div class="delegate__profile-name">
           <p>Become a Delegate</p>
+        </div>
+      </div>
+
+      <!-- Become Delegate Modal -->
+      <div class="modal fade" id="becomeDelegate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Become a Delegate</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container personal__description">
+                <div class="row">
+                  <p class="personal__title">Describe yourself in 120 Characters</p>
+                  <textarea style="width: 450px; height: 100px;" id="personal__description" maxlength="120" required></textarea>
+                </div>
+              </div>
+              <div class="container personal__domain">
+                <!-- Domain Option -->
+                <div class="row">
+                  <p class="personal__title">Your Expertise</p>
+                  <div class="domain_options">
+                    <select id="personal_expertise" class="domain_select" multiple="multiple">
+                      <option value="all">All</option>
+                      <option value="finance">Finance</option>
+                      <option value="administrative">Administrative</option>
+                      <option value="product">Product</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button id="delegate__submit" type="button" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
         </div>
       </div>
 

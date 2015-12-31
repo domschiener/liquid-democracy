@@ -1,9 +1,8 @@
 Template.create.rendered = function() {
   Session.set('NumberOfOptions', 2);
 
-  $(".domain_select").select2({
+  $("#domain_select").select2({
     width: 200,
-    placeholder: "Select an option",
     allowClear: true
   });
 
@@ -77,7 +76,7 @@ Template.create.events({
     poll['limit_hours'] = parseInt(hours.match(/\d+/)[0]);
     poll['limit_days'] = parseInt(days.match(/\d+/)[0]);
     console.log(poll);
-    
+
     Meteor.call('post_data', poll, function(error, success) {
       console.log(success);
     });
