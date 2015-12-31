@@ -20,5 +20,20 @@ Meteor.methods({
       }
       return error;
     });
+  },
+  new_delegate: function(data) {
+    return Delegates.insert({'delegate': data}, function(error, success) {
+      return success;
+    });
+  },
+  delegation: function(domain, user, delegate) {
+    // Use domains as key, search Mongo docs to find out how to do this properly
+    for (var i = 0; i < domain.length; i++) {
+      Delegates.update({_id: delegate}, {$push: {'test2.' + domain: user}}, function(error, success) {
+        console.log(error, success);
+      })
+    }
+
+    return true;
   }
 })

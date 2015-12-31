@@ -89,8 +89,6 @@ Router.route('/dashboard/vote/:_id/voted', {
     } else {
       Router.go('join');
     }
-
-
   }
 });
 
@@ -112,6 +110,11 @@ Router.route('/dashboard/delegates/', {
   name: 'delegates',
   layoutTemplate: 'dashboard_menu',
   template: 'delegates',
+  // data: function() {
+  //   var delegates = Delegates.find({}).fetch();
+  //   console.log(delegates);
+  //   return {'delegates': delegates};
+  // },
   onBeforeAction: function() {
     var user =  Meteor.userId();
     if(user) {
