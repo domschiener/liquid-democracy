@@ -5,9 +5,11 @@ Template.delegates.rendered = function() {
   });
 }
 
-// Template.delegates.helpers({
-//
-// })
+Template.delegates.helpers({
+  test: function(data) {
+    console.log(this);
+  }
+})
 
 Template.delegates.events({
   'click #delegate__submit': function() {
@@ -23,7 +25,6 @@ Template.delegates.events({
       delegate['profile_pic'] = result.data.avatar_url;
       delegate['name'] = result.data.name;
       delegate['link'] = result.data.html_url;
-      console.log(delegate);
       Meteor.call('new_delegate', delegate, function(error, success) {
         if (!error) {
           console.log(success);

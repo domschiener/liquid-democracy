@@ -52,7 +52,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button id="delegate__submit" type="button" class="btn btn-primary">Submit</button>
+              <button id="delegate__submit" type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
             </div>
           </div>
         </div>
@@ -77,7 +77,45 @@
             {{/each}}
           </div>
           <div class="delegate__profile-button">
-            <button id="delegate" name="success" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
+            <button name="success" class="btn btn-success" data-toggle="modal" data-target="#delegatePerson"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
+          </div>
+        </div>
+
+        <!-- Delegate Modal -->
+        <div class="modal fade" id="delegatePerson" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{this.delegate.name}}</h4>
+              </div>
+              <div class="modal-body">
+                <div class="container personal__description">
+                  <div class="row">
+                    <p class="personal__title">Describe yourself in 120 Characters</p>
+                    <textarea style="width: 450px; height: 100px;" id="delegate_description" maxlength="120" required></textarea>
+                  </div>
+                </div>
+                <div class="container personal__domain">
+                  <!-- Domain Option -->
+                  <div class="row">
+                    <p class="personal__title">Your Expertise</p>
+                    <div class="domain_options">
+                      <select id="delegate_experience" class="domain_select" multiple="multiple">
+                        <option value="main">Main</option>
+                        <option value="finance">Finance</option>
+                        <option value="administrative">Administrative</option>
+                        <option value="product">Product</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="delegate" type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
+              </div>
+            </div>
           </div>
         </div>
       {{/each}}
