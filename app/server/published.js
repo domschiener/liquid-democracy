@@ -1,4 +1,4 @@
-Meteor.publish('poll_listings', function() {
+Meteor.publish('pollListings', function() {
   if (this.userId) {
     return poll.find({});
   } else {
@@ -8,7 +8,7 @@ Meteor.publish('poll_listings', function() {
 
 Meteor.publish("userData", function () {
   if (this.userId) {
-    return Meteor.users.find({_id: this.userId}, {fields: {'services': 1}});
+    return Meteor.users.find({_id: this.userId}, {'services': 1});
   } else {
     this.ready();
   }
@@ -16,7 +16,7 @@ Meteor.publish("userData", function () {
 
 Meteor.publish("delegatesData", function () {
   if (this.userId) {
-    return Delegates.find({}, {fields: {'delegate': 1}});
+    return Delegates.find({});
   } else {
     this.ready();
   }

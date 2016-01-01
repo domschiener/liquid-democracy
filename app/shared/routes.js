@@ -106,15 +106,14 @@ Router.route('/dashboard/create', {
   }
 });
 
-Router.route('/dashboard/delegates/', {
+Router.route('/dashboard/delegates', {
   name: 'delegates',
   layoutTemplate: 'dashboard_menu',
   template: 'delegates',
-  // data: function() {
-  //   var delegates = Delegates.find({}).fetch();
-  //   console.log(delegates);
-  //   return {'delegates': delegates};
-  // },
+  data: function() {
+    var delegates = Delegates.find({}).fetch();
+    return {'delegates': delegates};
+  },
   onBeforeAction: function() {
     var user =  Meteor.userId();
     if(user) {

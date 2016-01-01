@@ -7,6 +7,7 @@
     </div>
     <div class="delegates__list">
 
+      {{#unless currentUser.delegate}}
       <div class="col-xs-3 delegate__profile">
         <div class="delegate__profile-picture">
           <button class="btn btn-success become-delegate" data-toggle="modal" data-target="#becomeDelegate">
@@ -17,6 +18,7 @@
           <p>Become a Delegate</p>
         </div>
       </div>
+      {{/unless}}
 
       <!-- Become Delegate Modal -->
       <div class="modal fade" id="becomeDelegate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -39,7 +41,7 @@
                   <p class="personal__title">Your Expertise</p>
                   <div class="domain_options">
                     <select id="personal_expertise" class="domain_select" multiple="multiple">
-                      <option value="all">All</option>
+                      <option value="main">Main</option>
                       <option value="finance">Finance</option>
                       <option value="administrative">Administrative</option>
                       <option value="product">Product</option>
@@ -57,24 +59,28 @@
       </div>
 
       <!-- Building Block for User Profile -->
-      <div class="col-xs-3 delegate__profile">
-        <div class="delegate__profile-picture">
-          <img src="/person.jpg" />
+      {{#each delegates}}
+        <div class="col-xs-3 delegate__profile">
+          <div class="delegate__profile-picture">
+            <img src="{{this.delegate.profile_pic}}" />
+          </div>
+          <div class="delegate__profile-name">
+            <p>{{this.delegate.name}}</p>
+          </div>
+          <div class="delegate__profile-description">
+            <p>{{this.delegate.description}}</p>
+          </div>
+          <div class="delegate__profile-domains">
+            <h5>Domain Expertise:</h5>
+            {{#each delegate.domain}}
+              <span class="label label-default">{{this}}</span>
+            {{/each}}
+          </div>
+          <div class="delegate__profile-button">
+            <button id="delegate" name="success" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
+          </div>
         </div>
-        <div class="delegate__profile-name">
-          <p>Dominik Schiener</p>
-        </div>
-        <div class="delegate__profile-description">
-          <p>I am a passionate young developer working on new eGovernance Solutions. I know about Startups and Blockchain. Vote me.</p>
-        </div>
-        <div class="delegate__profile-domains">
-          <h5>Domain Expertise:</h5>
-          <span class="label label-default">All</span>
-        </div>
-        <div class="delegate__profile-button">
-          <button id="delegate" name="success" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
-        </div>
-      </div>
+      {{/each}}
       <!-- End of Building Block -->
     </div>
   </section>
