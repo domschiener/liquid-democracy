@@ -31,11 +31,13 @@ Meteor.methods({
     return Delegates.find({}, {delegate: 1}).fetch();
   },
   delegation: function(domain, user, delegate) {
-    // Use domains as key, search Mongo docs to find out how to do this properly
+    // TODO: Find way to use domain as key in document
+    if (delegate === user) {
+      return false;
+    }
+
     for (var i = 0; i < domain.length; i++) {
-      Delegates.update({_id: delegate}, {$push: {'test2': user}}, function(error, success) {
-        console.log(error, success);
-      })
+      Delegates.update({_id: delegate}, {$push: {'delegations': {'domain': domain[i], 'user': user}}})
     }
     return true;
   }

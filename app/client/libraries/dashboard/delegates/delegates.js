@@ -1,13 +1,16 @@
 Template.delegates.rendered = function() {
-  $("#personal_expertise").select2({
+  $(".domain_select").select2({
     width: 200,
     allowClear: true
   });
 }
 
 Template.delegates.helpers({
-  test: function(data) {
-    console.log(this);
+  personal_profile: function(delegate_id) {
+    if (delegate_id === Meteor.userId()) {
+      return true;
+    }
+    return false;
   }
 })
 
@@ -33,10 +36,10 @@ Template.delegates.events({
     })
   },
   'click #delegate': function(event) {
-    console.log(event);
-    var domain = ["All"];
+    var domain = $('#delegate_experience').select2("val");
     var user = Meteor.userId();
-    var delegate = '6RDhvKKv6SERKHtN4';
+    var delegate = this._id;
+
     Meteor.call('delegation', domain, user, delegate, function(error, success) {
       console.log(success);
     });

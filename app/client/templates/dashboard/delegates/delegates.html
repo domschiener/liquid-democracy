@@ -18,7 +18,6 @@
           <p>Become a Delegate</p>
         </div>
       </div>
-      {{/unless}}
 
       <!-- Become Delegate Modal -->
       <div class="modal fade" id="becomeDelegate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -57,9 +56,32 @@
           </div>
         </div>
       </div>
+      {{/unless}}
 
       <!-- Building Block for User Profile -->
       {{#each delegates}}
+        {{#if personal_profile this._id}}
+        <div class="col-xs-3 delegate__profile">
+          <div class="delegate__profile-picture">
+            <img src="{{this.delegate.profile_pic}}" />
+          </div>
+          <div class="delegate__profile-name">
+            <p>{{this.delegate.name}}</p>
+          </div>
+          <div class="delegate__profile-description">
+            <p>{{this.delegate.description}}</p>
+          </div>
+          <div class="delegate__profile-domains">
+            <h5>Domain Expertise:</h5>
+            {{#each delegate.domain}}
+              <span class="label label-default">{{this}}</span>
+            {{/each}}
+          </div>
+          <div class="delegate__profile-button">
+            <button class="btn btn-success"><span class="glyphicon glyphicon-profile" aria-hidden="true"></span> Your Profile</button>
+          </div>
+        </div>
+        {{else}}
         <div class="col-xs-3 delegate__profile">
           <div class="delegate__profile-picture">
             <img src="{{this.delegate.profile_pic}}" />
@@ -92,20 +114,19 @@
               <div class="modal-body">
                 <div class="container personal__description">
                   <div class="row">
-                    <p class="personal__title">Describe yourself in 120 Characters</p>
-                    <textarea style="width: 450px; height: 100px;" id="delegate_description" maxlength="120" required></textarea>
+                    <p class="personal__title">Delegate Description</p>
+                    <p class="personal__description">{{this.delegate.description}}</p>
                   </div>
                 </div>
                 <div class="container personal__domain">
                   <!-- Domain Option -->
                   <div class="row">
-                    <p class="personal__title">Your Expertise</p>
+                    <p class="personal__title">Choose Domains to Delegate To</p>
                     <div class="domain_options">
                       <select id="delegate_experience" class="domain_select" multiple="multiple">
-                        <option value="main">Main</option>
-                        <option value="finance">Finance</option>
-                        <option value="administrative">Administrative</option>
-                        <option value="product">Product</option>
+                        {{#each this.delegate.domain}}
+                          <option value="{{this}}">{{this}}</option>
+                        {{/each}}
                       </select>
                     </div>
                   </div>
@@ -118,6 +139,7 @@
             </div>
           </div>
         </div>
+        {{/if}}
       {{/each}}
       <!-- End of Building Block -->
     </div>
