@@ -3,13 +3,24 @@ Template.delegates.rendered = function() {
     width: 200,
     allowClear: true
   });
+  $("#delegate_experience").select2({
+    width: 200,
+    allowClear: true
+  });
 }
 
 Template.delegates.helpers({
-  personal_profile: function(delegate_id) {
+  delegated: function(delegate_id) {
+    var delegates = Meteor.user().delegates;
     if (delegate_id === Meteor.userId()) {
       return true;
     }
+    delegates.forEach(function(element) {
+      if (delegate_id === element.delegate) {
+        console.log("found")
+        return true;
+      }
+    });
     return false;
   }
 })

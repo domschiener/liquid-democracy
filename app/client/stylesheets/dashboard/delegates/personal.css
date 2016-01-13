@@ -1,0 +1,15 @@
+/**
+  *   Main Delegates Styles
+  **/
+
+.personal {
+  width: 100%;
+  background-color: #F8F3F0;
+  top: 60px;
+  overflow: hidden;
+  margin: 60px 0 0;
+}
+
+.delegates__titles {
+  font-weight: 500;
+}

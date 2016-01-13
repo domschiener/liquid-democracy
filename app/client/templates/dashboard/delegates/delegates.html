@@ -1,12 +1,10 @@
 <template name="delegates">
+  {{> personal}}
   <section class="delegates">
     <div class="delegates__overview">
       <div class="delegates__title">
         <span class="gn-icon gn-icon-delegate" aria-hidden="true"> Delegates</span>
       </div>
-    </div>
-    <div class="personal__delegates">
-      
     </div>
     <div class="delegates__list">
 
@@ -63,85 +61,64 @@
 
       <!-- Building Block for User Profile -->
       {{#each delegates}}
-        {{#if personal_profile this._id}}
-        <div class="col-xs-3 delegate__profile">
-          <div class="delegate__profile-picture">
-            <img src="{{this.delegate.profile_pic}}" />
+        {{#if delegated this._id}}
+          <div class="col-xs-3 delegate__profile">
+            <div class="delegate__profile-picture">
+              <img src="{{this.delegate.profile_pic}}" />
+            </div>
+            <div class="delegate__profile-name">
+              <p>{{this.delegate.name}}</p>
+            </div>
+            <div class="delegate__profile-description">
+              <p>{{this.delegate.description}}</p>
+            </div>
+            <div class="delegate__profile-domains">
+              <h5>Domain Expertise:</h5>
+              {{#each delegate.domain}}
+                <span class="label label-default">{{this}}</span>
+              {{/each}}
+            </div>
+            <div class="delegate__profile-button">
+              <button name="success" class="btn btn-success" data-toggle="modal" data-target="#delegatePerson"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
+            </div>
           </div>
-          <div class="delegate__profile-name">
-            <p>{{this.delegate.name}}</p>
-          </div>
-          <div class="delegate__profile-description">
-            <p>{{this.delegate.description}}</p>
-          </div>
-          <div class="delegate__profile-domains">
-            <h5>Domain Expertise:</h5>
-            {{#each delegate.domain}}
-              <span class="label label-default">{{this}}</span>
-            {{/each}}
-          </div>
-          <div class="delegate__profile-button">
-            <button class="btn btn-success"><span class="glyphicon glyphicon-profile" aria-hidden="true"></span> Your Profile</button>
-          </div>
-        </div>
-        {{else}}
-        <div class="col-xs-3 delegate__profile">
-          <div class="delegate__profile-picture">
-            <img src="{{this.delegate.profile_pic}}" />
-          </div>
-          <div class="delegate__profile-name">
-            <p>{{this.delegate.name}}</p>
-          </div>
-          <div class="delegate__profile-description">
-            <p>{{this.delegate.description}}</p>
-          </div>
-          <div class="delegate__profile-domains">
-            <h5>Domain Expertise:</h5>
-            {{#each delegate.domain}}
-              <span class="label label-default">{{this}}</span>
-            {{/each}}
-          </div>
-          <div class="delegate__profile-button">
-            <button name="success" class="btn btn-success" data-toggle="modal" data-target="#delegatePerson"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
-          </div>
-        </div>
 
-        <!-- Delegate Modal -->
-        <div class="modal fade" id="delegatePerson" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">{{this.delegate.name}}</h4>
-              </div>
-              <div class="modal-body">
-                <div class="container personal__description">
-                  <div class="row">
-                    <p class="personal__title">Delegate Description</p>
-                    <p class="personal__description">{{this.delegate.description}}</p>
-                  </div>
+          <!-- Delegate Modal -->
+          <div class="modal fade" id="delegatePerson" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">{{this.delegate.name}}</h4>
                 </div>
-                <div class="container personal__domain">
-                  <!-- Domain Option -->
-                  <div class="row">
-                    <p class="personal__title">Choose Domains to Delegate To</p>
-                    <div class="domain_options">
-                      <select id="delegate_experience" class="domain_select" multiple="multiple">
-                        {{#each this.delegate.domain}}
-                          <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                      </select>
+                <div class="modal-body">
+                  <div class="container personal__description">
+                    <div class="row">
+                      <p class="personal__title">Delegate Description</p>
+                      <p class="personal__description">{{this.delegate.description}}</p>
+                    </div>
+                  </div>
+                  <div class="container personal__domain">
+                    <!-- Domain Option -->
+                    <div class="row">
+                      <p class="personal__title">Choose Domains to Delegate To</p>
+                      <div class="domain_options">
+                        <select id="delegate_experience" class="domain_select" multiple="multiple">
+                          {{#each this.delegate.domain}}
+                            <option value="{{this}}">{{this}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="delegate" type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button id="delegate" type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         {{/if}}
       {{/each}}
       <!-- End of Building Block -->
