@@ -35,7 +35,7 @@ Meteor.methods({
     if (delegate === user) {
       return false;
     }
-
+    Meteor.users.update({_id: user}, {$set: 'delegates': {'delegate': delegate, 'domain': domain}});
     for (var i = 0; i < domain.length; i++) {
       Delegates.update({_id: delegate}, {$push: {'delegations': {'domain': domain[i], 'user': user}}})
     }
