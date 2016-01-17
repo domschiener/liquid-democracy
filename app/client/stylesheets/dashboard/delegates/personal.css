@@ -13,3 +13,11 @@
 .delegates__titles {
   font-weight: 500;
 }
+
+.revoke_delegate:hover {
+  background-color: #b20000;
+}
+
+.revoke_delegate:hover:before {
+  content:"Remove";
+}

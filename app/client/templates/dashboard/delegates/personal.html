@@ -1,17 +1,38 @@
 <template name="personal">
   <section class="personal">
-    <div class="delegates__overview">
-      <div class="delegates__title">
-        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-        <span class="delegates__titles">Your Delegates</span>
+    {{#if currentUser.delegates}}
+      <div class="delegates__overview">
+        <div class="delegates__title">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+          <span class="delegates__titles">Your Delegates</span>
+        </div>
       </div>
-    </div>
-    <div class="delegates__list">
-      {{#if currentUser.delegates}}
-      <h1>hello</h1>
-      {{else}}
-      <h1>This</h1>
-      {{/if}}
-    </div>
+      <div class="delegates__list">
+        {{#each currentUser.delegates}}
+          {{#with delegateInfo delegate}}
+            <div class="col-xs-3 delegate__profile">
+              <div class="delegate__profile-picture">
+                <img src="{{this.delegate.profile_pic}}" />
+              </div>
+              <div class="delegate__profile-name">
+                <p>{{this.delegate.name}}</p>
+              </div>
+              <div class="delegate__profile-description">
+                <p>{{this.delegate.description}}</p>
+              </div>
+              <div class="delegate__profile-domains">
+                <h5>Domain Expertise:</h5>
+                {{#each delegate.domain}}
+                  <span class="label label-default">{{this}}</span>
+                {{/each}}
+              </div>
+              <div class="delegate__profile-button">
+                <button class="btn btn-success revoke_delegate"><span class="glyphicon glyphicon-profile" aria-hidden="true"></span> Your Delegate</button>
+              </div>
+            </div>
+          {{/with}}
+        {{/each}}
+      </div>
+    {{/if}}
   </section>
 </template>

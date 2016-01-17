@@ -21,7 +21,7 @@
       </div>
 
       <!-- Become Delegate Modal -->
-      <div class="modal fade" id="becomeDelegate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="becomeDelegate" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -40,7 +40,7 @@
                 <div class="row">
                   <p class="personal__title">Your Expertise</p>
                   <div class="domain_options">
-                    <select id="personal_expertise" class="domain_select" multiple="multiple">
+                    <select id="personal_expertise" class="select2" multiple="multiple">
                       <option value="main">Main</option>
                       <option value="finance">Finance</option>
                       <option value="administrative">Administrative</option>
@@ -61,7 +61,7 @@
 
       <!-- Building Block for User Profile -->
       {{#each delegates}}
-        {{#if delegated this._id}}
+        {{#if not_delegated this._id}}
           <div class="col-xs-3 delegate__profile">
             <div class="delegate__profile-picture">
               <img src="{{this.delegate.profile_pic}}" />
@@ -84,7 +84,7 @@
           </div>
 
           <!-- Delegate Modal -->
-          <div class="modal fade" id="delegatePerson" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal fade" id="delegatePerson" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -103,7 +103,7 @@
                     <div class="row">
                       <p class="personal__title">Choose Domains to Delegate To</p>
                       <div class="domain_options">
-                        <select id="delegate_experience" class="domain_select" multiple="multiple">
+                        <select class="delegateExpertise select2" multiple="multiple">
                           {{#each this.delegate.domain}}
                             <option value="{{this}}">{{this}}</option>
                           {{/each}}
@@ -114,7 +114,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button id="delegate" type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
+                  <button type="button" class="btn btn-primary delegatePerson" data-dismiss="modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
                 </div>
               </div>
             </div>

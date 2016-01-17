@@ -22,7 +22,8 @@ Meteor.methods({
     });
   },
   new_delegate: function(data) {
-    Meteor.users.update({_id: data.userID}, {$set: {'delegate': true}});
+    Meteor.users.update({_id: data.userID}, {$set: {'delegate': true, 'description': data.description, 'profile_pic': data.profile_pic, 'expertise': data.domain}});
+
     return Delegates.insert({_id: data.userID, 'delegate': data}, function(error, success) {
       return success;
     });
