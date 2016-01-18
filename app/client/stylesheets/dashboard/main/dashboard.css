@@ -147,6 +147,10 @@
   border-radius: 100%;
 }
 
+.panel-collapse {
+  text-align: center;
+}
+
 /**
   *   Dashboard Stats
   **/

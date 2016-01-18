@@ -28,6 +28,11 @@ Router.route('/dashboard', {
   name: 'dashboard',
   layoutTemplate: 'dashboard_menu',
   template: 'dashboard',
+  data: function() {
+    var active_polls = poll.find({}, {sort: {createdAt: -1}}).fetch();
+    var past_polls = poll.find()
+    return {'polls': active_polls, 'pastPolls': past_polls};
+  },
   onBeforeAction: function() {
     var user =  Meteor.userId();
     if(user) {
@@ -43,7 +48,7 @@ Router.route('/dashboard/vote', {
   layoutTemplate: 'dashboard_menu',
   template: 'vote',
   data: function() {
-    var active_polls = poll.find({}).fetch();
+    var active_polls = poll.find({}, {sort: {createdAt: -1}}).fetch();
     return {'polls': active_polls};
   },
   onBeforeAction: function() {

@@ -47,7 +47,6 @@ Template.create.rendered = function() {
 
 Template.create.events({
   'click #submit': function() {
-    console.log("here");
     event.preventDefault();
     num_options = Session.get('NumberOfOptions');
     var poll = {
@@ -75,10 +74,9 @@ Template.create.events({
 
     poll['limit_hours'] = parseInt(hours.match(/\d+/)[0]);
     poll['limit_days'] = parseInt(days.match(/\d+/)[0]);
-    console.log(poll);
 
     Meteor.call('post_data', poll, function(error, success) {
-      console.log(success);
+      Router.go('poll', {_id: success});
     });
   }
 })

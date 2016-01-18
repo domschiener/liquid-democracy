@@ -7,28 +7,84 @@
           <span class="delegates__titles">Your Delegates</span>
         </div>
       </div>
-      <div class="delegates__list">
+      <div class="delegates__list container">
         {{#each currentUser.delegates}}
           {{#with delegateInfo delegate}}
-            <div class="col-xs-3 delegate__profile">
-              <div class="delegate__profile-picture">
-                <img src="{{this.delegate.profile_pic}}" />
+            <div class="row">
+              <!-- Delegate Main Information -->
+              <div class="col-xs-3 delegate__profile">
+                <div class="delegate__profile-picture">
+                  <img src="{{this.delegate.profile_pic}}" />
+                </div>
+                <div class="delegate__profile-name">
+                  <p>{{this.delegate.name}}</p>
+                </div>
+                <div class="delegate__profile-description">
+                  <p>{{this.delegate.description}}</p>
+                </div>
+                <!-- <div class="delegate__profile-domains">
+                  <h5>Domain Expertise:</h5>
+                  {{#each currentUser.delegates(this._id).domain}}
+                    <span class="label label-default">{{this}}</span>
+                  {{/each}}
+                </div> -->
+                <div class="delegate__profile-button">
+                  <button class="btn btn-success revoke_delegate"><span class="glyphicon glyphicon-profile" aria-hidden="true"></span> Your Delegate</button>
+                </div>
               </div>
-              <div class="delegate__profile-name">
-                <p>{{this.delegate.name}}</p>
+              <!-- -->
+
+              <!-- Delegate Recent Votes -->
+              <div class="col-xs-3 delegate__votes">
+                <div class="delegate__votes-title">
+                  <p>Votes Casted</p>
+                </div>
+
+                <div class="panel-group" id="delegateVotes" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="issueOne">
+                      <h2 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#delegateVotes" href="#collapseIssueOne" aria-expanded="true" aria-controls="collapseIssueOne">
+                          How will we manage this?
+                        </a>
+                      </h2>
+                    </div>
+                    <div id="collapseIssueOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="issueOne">
+                      <div class="panel-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee.
+                      </div>
+                      <button type="button" class="btn btn-success panel_button">View</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="delegate__profile-description">
-                <p>{{this.delegate.description}}</p>
+              <!-- -->
+
+              <!-- Delegate Recent Issues -->
+              <div class="col-xs-3 delegate__issues">
+                <div class="delegate__votes-title">
+                  <p>Issues Created</p>
+                </div>
+
+                <div class="panel-group" id="delegateIssues" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="issueOne1">
+                      <h2 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#delegateIssues" href="#collapseIssueOne1" aria-expanded="true" aria-controls="collapseIssueOne1">
+                          How will we manage this?
+                        </a>
+                      </h2>
+                    </div>
+                    <div id="collapseIssueOne1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="issueOne1">
+                      <div class="panel-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee.
+                      </div>
+                      <button type="button" class="btn btn-success panel_button">View</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="delegate__profile-domains">
-                <h5>Domain Expertise:</h5>
-                {{#each delegate.domain}}
-                  <span class="label label-default">{{this}}</span>
-                {{/each}}
-              </div>
-              <div class="delegate__profile-button">
-                <button class="btn btn-success revoke_delegate"><span class="glyphicon glyphicon-profile" aria-hidden="true"></span> Your Delegate</button>
-              </div>
+              <!-- -->
             </div>
           {{/with}}
         {{/each}}

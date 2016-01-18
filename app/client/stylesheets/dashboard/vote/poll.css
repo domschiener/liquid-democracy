@@ -12,9 +12,10 @@
   min-height: 550px;
   background-color: #fff;
   text-align: center;
+  border: 2px solid #ccc;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  margin: 0 auto 15px;
+  margin: -5px auto 15px;
   padding: 25px;
 }
 

@@ -15,6 +15,7 @@ Meteor.publish("userData", function () {
 });
 
 Meteor.publish("delegatesData", function () {
+  //Make it so that only people who delegated can view the delegate
   if (this.userId) {
     return Delegates.find({});
   } else {
