@@ -9,3 +9,12 @@ Template.personal.helpers({
     return Delegates.findOne({_id: delegate_data});
   }
 })
+
+Template.personal.events({
+  'click .revoke_delegate': function() {
+    var delegate = this;
+    var user = Meteor.userId();
+
+    Meteor.call('revoke_delegate', delegate, user);
+  }
+})

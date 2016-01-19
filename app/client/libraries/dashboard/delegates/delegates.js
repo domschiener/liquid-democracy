@@ -37,12 +37,12 @@ Template.delegates.events({
       delegate['link'] = result.data.html_url;
       Meteor.call('new_delegate', delegate, function(error, success) {
         if (!error) {
-          console.log(success);
+          console.log("You are a Delegate now! Use your powers wisely");
         }
       });
     })
   },
-  'click .delegatePerson': function(event) {
+  'click .delegatePerson': function() {
     var domain = $('.delegateExpertise').select2("val");
     var user = Meteor.userId();
     var delegate = this._id;

@@ -13,9 +13,9 @@
           </div>
           <div class="issues__item-info">
             <div class="col-xs-4 panel__created">
-              <h4>Created at</h4>
+              <h4>Deadline</h4>
               <span>
-                {{this.createdAt}}
+                {{getDate this.endDate}}
               </span>
             </div>
             <div class="col-xs-4 panel__domain">
@@ -26,7 +26,7 @@
             </div>
             <div class="col-xs-4 panel__votes">
               <h4>Votes</h4>
-              <span>215</span>
+              <span>{{vote_count}}</span>
             </div>
           </div>
           <div class="issues__item-description panel-body">

@@ -87,5 +87,9 @@ Meteor.methods({
     }
 
     return true;
+  },
+  revoke_delegate: function(delegateobj, user) {
+    Meteor.users.update({_id: user}, {$pull: {delegates: {delegate: delegateobj._id}}});
+    Delegates.update({_id: delegateobj._id}, {$pull: {delegations: {user: user}}});
   }
 })
