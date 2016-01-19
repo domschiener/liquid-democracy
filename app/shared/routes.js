@@ -29,9 +29,8 @@ Router.route('/dashboard', {
   layoutTemplate: 'dashboard_menu',
   template: 'dashboard',
   data: function() {
-    var active_polls = poll.find({}, {sort: {createdAt: -1}}).fetch();
-    var past_polls = poll.find()
-    return {'polls': active_polls, 'pastPolls': past_polls};
+    var active_polls = poll.find({'poll.isvoted': false}, {sort: {createdAt: -1}}).fetch();
+    return {'polls': active_polls};
   },
   onBeforeAction: function() {
     var user =  Meteor.userId();
@@ -48,8 +47,9 @@ Router.route('/dashboard/vote', {
   layoutTemplate: 'dashboard_menu',
   template: 'vote',
   data: function() {
-    var active_polls = poll.find({}, {sort: {createdAt: -1}}).fetch();
-    return {'polls': active_polls};
+    var active_polls = poll.find({'poll.isvoted': false}, {sort: {createdAt: -1}}).fetch();
+    var past_polls = poll.find({'poll.isvoted': true}, {sort: {createdAt: -1}}).fetch();
+    return {'polls': active_polls, 'pastPolls': past_polls};
   },
   onBeforeAction: function() {
     var user =  Meteor.userId();
@@ -71,7 +71,6 @@ Router.route('/dashboard/vote/:_id', {
   onBeforeAction: function() {
     var user =  Meteor.userId();
     if(user) {
-      Session.set('current_poll', this.params._id);
       this.next();
     } else {
       Router.go('join');
@@ -89,7 +88,6 @@ Router.route('/dashboard/vote/:_id/voted', {
   onBeforeAction: function() {
     var user =  Meteor.userId();
     if(user) {
-      Session.set('current_poll', this.params._id);
       this.next();
     } else {
       Router.go('join');

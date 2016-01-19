@@ -11,13 +11,12 @@ Template.poll.events({
   'click .option_click': function(event) {
     var option = event.target.id;
     var user = Meteor.userId();
-    var poll = Session.get('current_poll');
+    var delegate = Meteor.user().delegate;
+    var poll = this._id;
 
-    Meteor.call('new_vote', option, user, poll, function(error, success) {
+    Meteor.call('new_vote', option, user, delegate, poll, function(error) {
       if (!error) {
-        // var route = "/dashboard/vote/" + poll + "/voted";
-        // Router.go('voted');
-        console.log("sucss");
+        Router.go('voted');
       }
     });
   }

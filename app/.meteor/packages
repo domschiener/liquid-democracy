@@ -24,3 +24,4 @@ service-configuration
 maazalik:highcharts
 accounts-github
 http
+hilios:jquery.countdown

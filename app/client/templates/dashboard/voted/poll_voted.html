@@ -18,9 +18,26 @@
 
       <div class="poll__options">
         <h4 class="vote_small">Voted</h4>
+        <div class="quick_stats row">
+          <div class="col-xs-6">
+            <div class="vote_count">
+              <p class="voted_title">Votes</p>
+              <p class="voted_content">{{vote_count}}</p>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="vote_time">
+              <p class="voted_title">Time Left</p>
+              <p id="countdown" class="voted_content">{{time_limit}}</p>
+            </div>
+          </div>
+        </div>
 
-        {{> highchartsHelper chartId="test" chartWidth="100%" charHeight="100%" chartObject=topGenresChart}}
-
+        {{#if this.poll.isvoted}}
+          {{> highchartsHelper chartId="test" chartWidth="100%" charHeight="100%" chartObject=topGenresChart}}
+        {{else}}
+          <span class="label label-warning poll_not_finished">Results will be published once the Poll is over.</span>
+        {{/if}}
       </div>
     </div>
   </section>

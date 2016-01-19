@@ -53,7 +53,8 @@ Template.create.events({
       'name': '',
       'description': '',
       'options': '',
-      'isactive': false,
+      //TODO: Change to false once integrating with Ethereum
+      'isactive': true,
       'isvoted': false,
     }
 
@@ -75,8 +76,16 @@ Template.create.events({
     poll['limit_hours'] = parseInt(hours.match(/\d+/)[0]);
     poll['limit_days'] = parseInt(days.match(/\d+/)[0]);
 
-    Meteor.call('post_data', poll, function(error, success) {
-      Router.go('poll', {_id: success});
+    // Calculating Deadline of Poll
+    var cur_date = Date.now();
+    var days = (poll['limit_days']) * 86400000;
+    var hours = (poll['limit_hours']) * 3600000;
+    var deadline = cur_date + days + hours;
+
+    Meteor.call('new_poll', poll, deadline, function(error, success) {
+      if (!error) {
+        Router.go('poll', {_id: success});
+      }
     });
   }
 })

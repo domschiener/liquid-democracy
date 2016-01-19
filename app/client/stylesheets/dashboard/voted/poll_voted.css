@@ -1,0 +1,72 @@
+.poll_not_finished {
+  font-size: 22px;
+  white-space: normal;
+}
+
+.quick_stats {
+  margin-bottom: 100px;
+}
+
+.vote_count {
+  width: 250px;
+  height: 120px;
+  background-color: #9b59b6;
+  color: #fff;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.vote_time {
+  width: 250px;
+  height: 120px;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.voted_title {
+  vertical-align: middle;
+  text-align: center;
+  font-size: 30px;
+  padding-top: 10px;
+  margin-bottom: 5px;
+}
+
+.voted_content {
+  margin-top: 15px;
+  font-size: 26px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.public_votes {
+  margin: 80px auto 50px;
+}
+
+.public_votes table {
+  margin: 40px auto 0;
+}
+
+.public_votes th {
+  width: 300px;
+  height: 100px;
+  border: 1px solid #ccc;
+  text-align: center;
+  background: #d8514b;
+  font-size: 22px;
+}
+
+.public_votes td {
+  border: 1px solid #ccc;
+  width: 150px;
+
+}
+
+.timestamp {
+  padding-left: 20px;
+}
+
+.centered {
+  text-align:center;
+}
