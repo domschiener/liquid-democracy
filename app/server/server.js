@@ -1,3 +1,51 @@
+function voteCounting(poll_id, domain) {
+  var votes = Uservotes.find({_id: poll_id}).fetch();
+
+  var voters = [];
+  var delegates = [];
+
+  for (var i = 0; i < votes.vote.length; i++) {
+    if (votes.vote[i].delegate) {
+      delegates.push(votes.vote[i]);
+    } else {
+      voters.push(votes.vote[i]);
+    }
+  }
+
+  var delegateVoters = Delegates.findOne({_id: delegates[0].voter});
+
+  return resursiveCount(voters, delegateVoters, false, delegates, domain);
+}
+
+function resursiveCount(votestructure, current_delegate, pop_delegate, delegates, domain) {
+
+  if (delegates.length < 1) {
+    return votestructure;
+  }
+
+  if (pop_delegate) {
+    delegates.shift();
+    current_delegate = Delegates.findOne({_id: delegates[0].voter});
+  }
+
+  var voterStructure = {
+    'voter'
+  }
+
+  var containsDelegates = false;
+
+  for (var j = 0; j < current_delegate.delegations.length; j++) {
+    var current_voter = Meteor.users.findOne({_id: current_delegate.delegations[j]['user']});
+
+    if (current_voter)
+
+
+    if (current_delegate.delegations[j].domain === domain && voters.indexOf(current_delegate.delegations[j].user) === -1) {
+      count += 1;
+    }
+  }
+}
+
 Meteor.startup(function() {
   //process.env.HTTP_FORWARDED_COUNT = 1;
 
@@ -18,7 +66,7 @@ Meteor.startup(function() {
   //
   // set the deadline for each poll on server startup
   //
-  var active_polls = poll.find({'poll.isactive':true}).fetch();
+  var active_polls = poll.find({'poll.isvoted': false}).fetch();
   for (var i = 0; i < active_polls.length; i++) {
     var current_poll = active_polls[i];
     var current_date = Date.now();

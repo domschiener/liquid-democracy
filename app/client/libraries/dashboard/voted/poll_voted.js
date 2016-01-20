@@ -43,7 +43,6 @@ Template.voted.helpers({
          votes_counted[current_poll.votes[i]] = (votes_counted[current_poll.votes[i]] || 0) + 1;
       }
     }
-    console.log(votes_counted);
 
     var votes_full = [];
     for (var i = 0; i < poll_options.length; i++) {
