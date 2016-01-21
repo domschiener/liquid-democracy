@@ -12,10 +12,11 @@ function genUservotes(allVoters) {
   constructor['_id'] = randomID();
   constructor['vote'] = [];
 
-  allVoters.forEach(function(voter) {
+  allVoters.forEach(function(voter, index) {
     var isDelegate = voter.delegate;
 
     if (isDelegate) {
+      console.log("new delegate!");
       var tmpVoter = {
         "voter": voter._id,
         "option": Math.random() >= 0.5 ? 'Yes' : 'NO',
@@ -25,6 +26,7 @@ function genUservotes(allVoters) {
       constructor['vote'].push(tmpVoter);
     }
     else {
+      console.log("No delegate!");
       // With 15% probability, the voter herself will vote (even if delegation)
       if (Math.random() >= 0.85) {
         var tmpVoter = {
@@ -114,5 +116,5 @@ function genUsers(numTimes) {
 
 var voters = genUsers(30);
 var delegates = genDelegates(voters);
-var votes = genuservotes(voters);
-console.log(delegates);
+var votes = genUservotes(voters[2]);
+console.log(votes);
