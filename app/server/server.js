@@ -153,13 +153,13 @@ Meteor.methods({
     Meteor.users.update({_id: user}, {$push: {'delegates': {'delegate': delegate, 'domain': domain}}});
 
     for (var i = 0; i < domain.length; i++) {
-      Delegates.update({_id: delegate}, {$push: {'delegations': {'domain': domain[i], 'user': user}}})
+      Delegates.update({_id: delegate}, {$push: {'delegations': {'domain': domain[i], 'voter': user}}})
     }
 
     return true;
   },
   revoke_delegate: function(delegateobj, user) {
-    Meteor.users.update({_id: user}, {$pull: {delegates: {delegate: delegateobj._id}}});
-    Delegates.update({_id: delegateobj._id}, {$pull: {delegations: {user: user}}});
+    Meteor.users.update({_id: user}, {$pull: {'delegates': {'delegate': delegateobj._id}}});
+    Delegates.update({_id: delegateobj._id}, {$pull: {'delegations': {'voter': user}}});
   }
 })
