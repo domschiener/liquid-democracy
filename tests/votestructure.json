@@ -1,0 +1,236 @@
+[
+  {
+    "voter": "fv2zo26jq0k9",
+    "option": "NO",
+    "delegate": false,
+    "poll": "tlievr94q5b3xr"
+  },
+  {
+    "voter": "vxphmfwzcqsemi",
+    "option": "Yes",
+    "delegate": false,
+    "poll": "tlievr94q5b3xr"
+  },
+  {
+    "voter": "kwnozcfecdi",
+    "option": "NO",
+    "delegate": false,
+    "poll": "tlievr94q5b3xr"
+  },
+  {
+    "voter": "4wqaj567ds4i",
+    "option": "Yes",
+    "delegate": false,
+    "poll": "tlievr94q5b3xr"
+  },
+  {
+    "voter": "ofotm7tpxecdi",
+    "option": "NO",
+    "delegates": [
+      {
+        "voter": "v43dterh82rzfr",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "3utgl8al6usor",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "asjc7l9rg4x6r",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "vxphmfwzcqsemi",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "kwnozcfecdi",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "n0sfyrykfbt9",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "gv2ijfueze61or",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "z68ztygd7h9f6r",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "87i0uixtju4n29",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "vit6gjvxfajor",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "07q6cv9qrxjemi",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "72opbyd12lnmi",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "uy17kjse64j9k9",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "ouuihywo03sor",
+        "option": "NO",
+        "delegates": []
+      },
+      {
+        "voter": "fz2fmwstmuc8fr",
+        "option": "NO",
+        "delegates": []
+      }
+    ]
+  },
+  {
+    "voter": "4uv6j58iod2t9",
+    "option": "NO",
+    "delegates": []
+  },
+  {
+    "voter": "au4sbgoktvs4i",
+    "option": "NO",
+    "delegates": []
+  },
+  {
+    "voter": "hg98pjficw61or",
+    "option": "Yes",
+    "delegates": [
+      {
+        "voter": "36v92wyntrzfr",
+        "option": "Yes",
+        "delegates": []
+      },
+      {
+        "voter": "6mel9bdvuc8fr",
+        "option": "Yes",
+        "delegates": []
+      },
+      {
+        "voter": "1f1kp6ogioogvi",
+        "option": "Yes",
+        "delegates": []
+      },
+      {
+        "voter": "4kzf5tjfw29",
+        "option": "Yes",
+        "delegates": []
+      },
+      {
+        "voter": "uylhg7ko869a4i",
+        "option": "Yes",
+        "delegates": []
+      },
+      {
+        "voter": "qkicdb2x340a4i",
+        "option": "Yes",
+        "delegates": []
+      }
+    ]
+  },
+  {
+    "voter": "iv3rkudo1ug14i",
+    "option": "Yes",
+    "delegates": [
+      {
+        "voter": "fv2zo26jq0k9",
+        "option": "Yes",
+        "delegates": []
+      },
+      {
+        "voter": "f12x2adh7iudi",
+        "option": "Yes",
+        "delegates": []
+      }
+    ]
+  },
+  {
+    "voter": "thpf096wmw8kt9",
+    "option": "Yes",
+    "delegates": [
+      {
+        "voter": "4wqaj567ds4i",
+        "option": "Yes",
+        "delegates": []
+      },
+      {
+        "voter": "3utf6jqi6kcsor",
+        "option": "Yes",
+        "delegates": []
+      },
+      {
+        "voter": "2ff2fk36p3nmi",
+        "option": "Yes",
+        "delegates": []
+      },
+      {
+        "voter": "8rb1vxi3gl23xr",
+        "option": "Yes",
+        "delegates": []
+      }
+    ]
+  },
+  {
+    "voter": "33mhzfh600y66r",
+    "option": "NO",
+    "delegates": [
+      {
+        "voter": "3ipa4fgaocrf6r",
+        "option": "NO",
+        "delegates": []
+      }
+    ]
+  },
+  {
+    "voter": "d225qjtx5yiudi",
+    "option": "Yes",
+    "delegates": []
+  },
+  {
+    "voter": "71smylvvjnstt9",
+    "option": "NO",
+    "delegates": []
+  },
+  {
+    "voter": "1ztyq2svh1tt9",
+    "option": "NO",
+    "delegates": []
+  },
+  {
+    "voter": "cd2mvjhe61or",
+    "option": "NO",
+    "delegates": []
+  },
+  {
+    "voter": "0iyuvrzx0i19k9",
+    "option": "NO",
+    "delegates": []
+  },
+  {
+    "voter": "i2amm8a6lgnwmi",
+    "option": "Yes",
+    "delegates": []
+  }
+]

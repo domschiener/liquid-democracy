@@ -9,29 +9,29 @@ function randomID() {
 function genUservotes(allVoters) {
   // Generates a (somewhat) random constructor of uservotes
   var constructor = {}
-  constructor['_id'] = randomID();
+  constructor['_id'] = 'xr8on9pchumcxr'; //randomID();
   constructor['vote'] = [];
 
   allVoters.forEach(function(voter, index) {
     var isDelegate = voter.delegate;
 
     if (isDelegate) {
-      console.log("new delegate!");
       var tmpVoter = {
         "voter": voter._id,
         "option": Math.random() >= 0.5 ? 'Yes' : 'NO',
+        "delegate": isDelegate,
         "poll": constructor['_id']
       }
 
       constructor['vote'].push(tmpVoter);
     }
     else {
-      console.log("No delegate!");
       // With 15% probability, the voter herself will vote (even if delegation)
       if (Math.random() >= 0.85) {
         var tmpVoter = {
           "voter": voter._id,
           "option": Math.random() >= 0.5 ? 'Yes' : 'NO',
+          "delegate": isDelegate,
           "poll": constructor['_id']
         }
 
@@ -40,7 +40,11 @@ function genUservotes(allVoters) {
     }
   })
 
-  fs.writeFile('./uservotes.json', JSON.stringify(constructor), {flag: "w+"});
+  fs.writeFile('./uservotes.json', JSON.stringify(constructor), {flag: "w+"}, function(error, success) {
+    if (!error) {
+      console.log("Successfully generated Uservotes.")
+    }
+  });
   return constructor;
 }
 
@@ -84,7 +88,11 @@ function genDelegates(allResults) {
     })
   })
 
-  fs.writeFile('./delegates.json', JSON.stringify(output), {flag: "w+"});
+  fs.writeFile('./delegates.json', JSON.stringify(output), {flag: "w+"}, function(error, success) {
+    if (!error) {
+      console.log("Successfully generated Delegates.")
+    }
+  });
   return output;
 }
 
@@ -98,7 +106,8 @@ function genUsers(numTimes) {
   for (var i = 0; i < numTimes; i++) {
     var constructor = {};
     constructor['_id'] = randomID();
-    constructor['delegate'] = Math.random() >= 0.5 ? true : false;
+    // With 30% probability, voter == delegate
+    constructor['delegate'] = Math.random() >= 0.7 ? true : false;
     if (constructor['delegate']) {
       constructor['expertise'] = Math.random() >= 0.5 ? 'main' : 'finance';
       delegates.push(constructor['_id']);
@@ -109,12 +118,15 @@ function genUsers(numTimes) {
     output.push(constructor);
   }
 
-  fs.writeFile('./voters.json', JSON.stringify(output), {flag: "w+"});
+  fs.writeFile('./voters.json', JSON.stringify(output), {flag: "w+"}, function(error, success) {
+    if (!error) {
+      console.log("Successfully generated Users.")
+    }
+  });
   allResults.push(delegates, voters, output);
   return allResults;
 }
 
-var voters = genUsers(30);
+var voters = genUsers(50);
 var delegates = genDelegates(voters);
 var votes = genUservotes(voters[2]);
-console.log(votes);

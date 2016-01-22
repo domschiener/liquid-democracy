@@ -1,5 +1,10 @@
+var fs = require('fs');
+
 function voteCounting(poll_id, domain) {
-  var votes = Uservotes.find({_id: poll_id}).fetch();
+  //var votes = Uservotes.find({_id: poll_id}).fetch();
+  var votes = fs.readFileSync('./uservotes.json', "utf8");
+  votes = JSON.parse(votes);
+  console.log("NumVotes", votes.vote.length);
 
   var voters = [];
   var delegates = [];
@@ -11,59 +16,100 @@ function voteCounting(poll_id, domain) {
       voters.push(votes.vote[i]);
     }
   }
+  var current_delegate;
+  var allDelegates = fs.readFileSync('./delegates.json', "utf8");
+  allDelegates = JSON.parse(allDelegates);
 
-  var delegateVoters = Delegates.findOne({_id: delegates[0].voter});
-
-  return resursiveCount(voters, delegateVoters, false, delegates, domain);
+  allDelegates.forEach(function(delegate) {
+    if (delegate._id === delegates[0].voter) {
+      current_delegate = delegate;
+    }
+  })
+  console.log("NumDelegates", delegates.length);
+  recursiveCount(voters, current_delegate, false, delegates, domain, allDelegates);
 }
 
-function resursiveCount(votestructure, current_delegate, pop_delegate, delegates, domain) {
+function voterVoted(votestructure, voter) {
+  votestructure.forEach(function(curr_voter) {
+    if (curr_voter.voter === voter) {
+      console.log("Voter");
+      return true;
+    }
+  });
+
+  return false;
+}
+
+function recursiveCount(votestructure, current_delegate, pop_delegate, delegates, domain, allDelegates) {
   // Exit function, if all delegates searched, return the JSON output
   if (delegates.length < 1) {
+    fs.writeFile('./votestructure.json', JSON.stringify(votestructure), {flag: "w+"}, function(error, success) {
+      if (!error) {
+        console.log("Successfully generated Votestructure.")
+      }
+    });
     return votestructure;
   }
 
-  // If we want through all voters of a delegate, pop delegate and restart with new delegate
+  // If we went through all voters of a delegate, pop delegate and restart with new delegate
   if (pop_delegate) {
-    delegates.shift();
-    current_delegate = Delegates.findOne({_id: delegates[0].voter});
+    allDelegates.forEach(function(delegate) {
+      if (delegate._id === delegates[0].voter) {
+
+        current_delegate = delegate;
+      }
+    });
   }
 
   var voterObj = {
-    'voter': current_delegate.voter;
-    'option': current_delegate.option ? current_delegate.option : delegates[0].option;
-    'votedAt': current_delegate.votedAt ? current_delegate.votedAt : delegates[0].votedAt;
-    'delegates': [];
+    'voter': current_delegate.voter === true ? current_delegate.voter : delegates[0].voter,
+    'option': delegates[0].option,
+    'delegates': []
   }
 
+  var allVoters = fs.readFileSync('./voters.json', "utf8");
+  allVoters = JSON.parse(allVoters);
   var containsDelegates = false;
 
   for (var j = 0; j < current_delegate.delegations.length; j++) {
-    var current_voter = Meteor.users.findOne({_id: current_delegate.delegations[j]['user']});
+    var current_voter;
+
+    allVoters.forEach(function(voter) {
+      if (voter._id === current_delegate.delegations[j]['voter']) {
+        current_voter = voter;
+      }
+    });
 
     // If current_voter is a Delegate herself, we call the function recursively counting voters
     if (current_voter.delegate) {
       containsDelegates = true;
-      voterObj.delegates.push(recursiveCount());
+      console.log("here");
+      voterObj.delegates.push(recursiveCount(votestructure, current_voter, false, delegates, domain, allDelegates));
     }
-    else if (current_delegate.delegations[j].domain === domain && voters.indexOf(current_delegate.delegations[j].user) === -1) {
+    else if (current_delegate.delegations[j].domain === domain &&
+            voterVoted(votestructure, current_delegate.delegations[j].voter) !== true) {
       // If voter is not delegate himself, we create a new object and append to delegate voterObj
       var newVoter = {};
-      newVoter['voter'] = current_delegate.delegations[j].user
+      newVoter['voter'] = current_delegate.delegations[j].voter;
       newVoter['option'] = delegates[0].option;
-      newVoter['votedAt'] = delegates[0].votedAt;
-      newVoter['delegates'] = [];
-
+      console.log(newVoter);
       voterObj.delegates.push(newVoter);
     }
 
-    IF NO MORE DELEGATES, RETURN THE VOTE STRUCTURE
+    // IF NO MORE DELEGATES, RETURN THE VOTE STRUCTURE
   }
 
   // If delegates, return the voter obj, else pop delegate and start anew
   if (containsDelegates) {
     return voterObj;
   }
+
   votestructure.push(voterObj);
-  return recursiveCount()
+
+  // If we went through all voters of a delegate, pop delegate and restart with new delegate
+  delegates.shift();
+
+  recursiveCount(votestructure, current_delegate, true, delegates, domain, allDelegates);
 }
+
+voteCounting('xr8on9pchumcxr', 'main');

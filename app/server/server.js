@@ -39,7 +39,7 @@ function resursiveCount(votestructure, current_delegate, pop_delegate, delegates
   var containsDelegates = false;
 
   for (var j = 0; j < current_delegate.delegations.length; j++) {
-    var current_voter = Meteor.users.findOne({_id: current_delegate.delegations[j]['user']});
+    var current_voter = Meteor.users.findOne({_id: current_delegate.delegations[j]['voter']});
 
     // If current_voter is a Delegate herself, we call the function recursively counting voters
     if (current_voter.delegate) {

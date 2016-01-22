@@ -1,1 +1,107 @@
-{"_id":"xr8on9pchumcxr","vote":[{"voter":"dbxq8joo5hfr","option":"NO","poll":"xr8on9pchumcxr"},{"voter":"evsmrw4251m7vi","option":"Yes","poll":"xr8on9pchumcxr"},{"voter":"33m3o9uy58kt9","option":"Yes","poll":"xr8on9pchumcxr"},{"voter":"cl7hnsgybsxlxr","option":"NO","poll":"xr8on9pchumcxr"},{"voter":"38id1kgs4z33di","option":"NO","poll":"xr8on9pchumcxr"},{"voter":"ywo7tj9j05dn29","option":"Yes","poll":"xr8on9pchumcxr"},{"voter":"dswsn4vn1jdcxr","option":"Yes","poll":"xr8on9pchumcxr"},{"voter":"zufy0z2kv5cdi","option":"NO","poll":"xr8on9pchumcxr"},{"voter":"7c4eacdfiara4i","option":"Yes","poll":"xr8on9pchumcxr"},{"voter":"6upck3eu8cwhfr","option":"NO","poll":"xr8on9pchumcxr"},{"voter":"5n943uwj1exw29","option":"Yes","poll":"xr8on9pchumcxr"},{"voter":"gmxsujp9v5z5mi","option":"Yes","poll":"xr8on9pchumcxr"},{"voter":"tem205f2bj4i","option":"Yes","poll":"xr8on9pchumcxr"},{"voter":"8489v7i0nhr529","option":"NO","poll":"xr8on9pchumcxr"}]}
+{
+  "_id": "tlievr94q5b3xr",
+  "vote": [
+    {
+      "voter": "ofotm7tpxecdi",
+      "option": "NO",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "4uv6j58iod2t9",
+      "option": "NO",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "fv2zo26jq0k9",
+      "option": "NO",
+      "delegate": false,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "au4sbgoktvs4i",
+      "option": "NO",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "hg98pjficw61or",
+      "option": "Yes",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "iv3rkudo1ug14i",
+      "option": "Yes",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "thpf096wmw8kt9",
+      "option": "Yes",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "33mhzfh600y66r",
+      "option": "NO",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "vxphmfwzcqsemi",
+      "option": "Yes",
+      "delegate": false,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "d225qjtx5yiudi",
+      "option": "Yes",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "kwnozcfecdi",
+      "option": "NO",
+      "delegate": false,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "71smylvvjnstt9",
+      "option": "NO",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "1ztyq2svh1tt9",
+      "option": "NO",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "cd2mvjhe61or",
+      "option": "NO",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "4wqaj567ds4i",
+      "option": "Yes",
+      "delegate": false,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "0iyuvrzx0i19k9",
+      "option": "NO",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    },
+    {
+      "voter": "i2amm8a6lgnwmi",
+      "option": "Yes",
+      "delegate": true,
+      "poll": "tlievr94q5b3xr"
+    }
+  ]
+}
