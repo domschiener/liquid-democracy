@@ -29,78 +29,63 @@
     "delegates": [
       {
         "voter": "v43dterh82rzfr",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "3utgl8al6usor",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "asjc7l9rg4x6r",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "vxphmfwzcqsemi",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "kwnozcfecdi",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "n0sfyrykfbt9",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "gv2ijfueze61or",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "z68ztygd7h9f6r",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "87i0uixtju4n29",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "vit6gjvxfajor",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "07q6cv9qrxjemi",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "72opbyd12lnmi",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "uy17kjse64j9k9",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "ouuihywo03sor",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       },
       {
         "voter": "fz2fmwstmuc8fr",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       }
     ]
   },
@@ -120,33 +105,27 @@
     "delegates": [
       {
         "voter": "36v92wyntrzfr",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       },
       {
         "voter": "6mel9bdvuc8fr",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       },
       {
         "voter": "1f1kp6ogioogvi",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       },
       {
         "voter": "4kzf5tjfw29",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       },
       {
         "voter": "uylhg7ko869a4i",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       },
       {
         "voter": "qkicdb2x340a4i",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       }
     ]
   },
@@ -156,13 +135,11 @@
     "delegates": [
       {
         "voter": "fv2zo26jq0k9",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       },
       {
         "voter": "f12x2adh7iudi",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       }
     ]
   },
@@ -172,23 +149,19 @@
     "delegates": [
       {
         "voter": "4wqaj567ds4i",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       },
       {
         "voter": "3utf6jqi6kcsor",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       },
       {
         "voter": "2ff2fk36p3nmi",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       },
       {
         "voter": "8rb1vxi3gl23xr",
-        "option": "Yes",
-        "delegates": []
+        "option": "Yes"
       }
     ]
   },
@@ -198,8 +171,7 @@
     "delegates": [
       {
         "voter": "3ipa4fgaocrf6r",
-        "option": "NO",
-        "delegates": []
+        "option": "NO"
       }
     ]
   },
