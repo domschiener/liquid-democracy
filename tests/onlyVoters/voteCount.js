@@ -43,11 +43,9 @@ function finalCount(votestructure) {
   votestructure.forEach(function(voter) {
     count += 1;
     if (voter.delegates) {
-      console.log(count);
       voter.delegates.forEach(function(delegateVoters) {
         count += 1;
       })
-      console.log(count);
     }
   });
 
@@ -60,7 +58,7 @@ function recursiveCount(votestructure, current_delegate, pop_delegate, delegates
     var count = finalCount(votestructure);
     fs.writeFile('./votestructure.json', JSON.stringify(votestructure), {flag: "w+"}, function(error, success) {
       if (!error) {
-        console.log("Successfully generated Votestructure. Final Count: ", count);
+        console.log("Successfully generated Votestructure. Final Vote Count: ", count);
       }
     });
     return votestructure;

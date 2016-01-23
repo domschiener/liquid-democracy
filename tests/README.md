@@ -7,7 +7,7 @@ Create a test function that basically creates 3 randomized json objects:
   - One for the delegates
   - One for the users
 
-
+Interesting thought, how likely is it that the program will lead to a circle-delegation (Delegate A -> Delegate B -> Delegate C -> Delegate A)? This will lead to an infinite loop and the test functions breaking.
 
 Delegates:
 {
