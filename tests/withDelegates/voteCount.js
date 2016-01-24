@@ -26,15 +26,18 @@ function voteCounting(poll_id, domain) {
   allDelegates.forEach(function(delegate, index) {
     delegates.forEach(function(current_delegate) {
       if (delegate._id === current_delegate.voter) {
-        console.log(index);
         output.push(recursiveCount(delegates, voters, delegate, current_delegate, allVoters, allDelegates, domain));
       }
     })
   })
+  var count = 0;
+  output.forEach(function(voter) {
+    count += finalCount(voter);
+  })
 
   fs.writeFile('./votestructure.json', JSON.stringify(output), {flag: "w+"}, function(error, success) {
     if (!error) {
-      console.log("Successfully generated Votestructure. Final Vote Count: ");
+      console.log("Successfully generated Votestructure. Final Vote Count: ", count);
     }
   });
 
@@ -46,36 +49,41 @@ function voteCounting(poll_id, domain) {
   **/
 
 function voterVoted(votestructure, voter) {
+  var found = false;
+
   votestructure.forEach(function(curr_voter) {
     if (curr_voter.voter === voter) {
-      return true;
+      found = true;
     }
   });
 
-  return false;
+  return found;
 }
 
 function delegateVoted(votestructure, voter) {
+  var found = false;
+
   votestructure.forEach(function(curr_voter) {
     if (curr_voter.voter === voter) {
-      return true;
+      found = true;
     }
   });
 
-  return false;
+  return found;
 }
 
-function finalCount(votestructure) {
-  var count = 0;
-
-  votestructure.forEach(function(voter) {
-    count += 1;
-    if (voter.delegates) {
-      voter.delegates.forEach(function() {
+function finalCount(voter) {
+  var count = 1;
+  if (voter.delegates) {
+    voter.delegates.forEach(function(delegVoter) {
+      if (delegVoter.delegates) {
+        count += finalCount(delegVoter);
+      }
+      else {
         count += 1;
-      })
-    }
-  });
+      }
+    });
+  }
 
   return count;
 }
@@ -108,8 +116,6 @@ function recursiveCount(delegateVoters, votersVoters, delegate, curVoter, allVot
           newDelegate = delegate;
         }
       })
-      console.log("New delegate", newDelegate);
-
       voterObj.delegates.push(recursiveCount(delegateVoters, votersVoters, newDelegate, curVoter, allVoters, allDelegates, domain));
     }
     else if (delegVoter.domain === domain &&
@@ -123,86 +129,6 @@ function recursiveCount(delegateVoters, votersVoters, delegate, curVoter, allVot
   })
 
   return voterObj;
-}
-
-
-function recursiveCount2(votestructure, current_delegate, pop_delegate, delegates, domain, allDelegates) {
-  // Exit function, if all delegates searched, return the JSON output
-  console.log(delegates.length);
-  if (delegates.length < 1) {
-    var count = 5; //finalCount(votestructure);
-    fs.writeFile('./votestructure.json', JSON.stringify(votestructure), {flag: "w+"}, function(error, success) {
-      if (!error) {
-        console.log("Successfully generated Votestructure. Final Vote Count: ", count);
-      }
-    });
-
-    return votestructure;
-  }
-
-  // If we went through all voters of a delegate, pop delegate and restart with new delegate
-  if (pop_delegate) {
-    allDelegates.forEach(function(delegate) {
-      if (delegate._id === delegates[0].voter) {
-        current_delegate = delegate;
-      }
-    });
-  }
-
-  var voterObj = {
-    'voter': current_delegate._id,
-    'option': delegates[0].option,
-    'delegates': []
-  }
-
-  var allVoters = fs.readFileSync('./voters.json', "utf8");
-  allVoters = JSON.parse(allVoters);
-
-  for (var j = 0; j < current_delegate.delegations.length; j++) {
-    var current_voter;
-
-    allVoters.forEach(function(voter) {
-      if (voter._id === current_delegate.delegations[j]['voter']) {
-        current_voter = voter;
-      }
-    });
-
-    // If current_voter is a Delegate herself, we call the function recursively counting voters
-    if (current_voter.delegate) {
-      var newDelegate;
-      console.log("New delegate", current_voter);
-      allDelegates.forEach(function(delegate) {
-        if (delegate._id === current_voter._id) {
-          newDelegate = delegate;
-        }
-      });
-      console.log(newDelegate);
-      voterObj.delegates.push(recursiveCount(votestructure, newDelegate, false, delegates, domain, allDelegates));
-    }
-    if (current_delegate.delegations[j].domain === domain &&
-        voterVoted(votestructure, current_delegate.delegations[j].voter) !== true) {
-      // If voter is not delegate himself, we create a new object and append to delegate voterObj
-      var newVoter = {};
-      newVoter['voter'] = current_delegate.delegations[j].voter;
-      newVoter['option'] = delegates[0].option;
-      voterObj.delegates.push(newVoter);
-    }
-
-    // IF NO MORE DELEGATES, RETURN THE VOTE STRUCTURE
-  }
-
-  // If delegates, return the voter obj, else pop delegate and start anew
-  if (pop_delegate === false) {
-    console.log("return", voterObj);
-    return voterObj;
-  }
-
-  votestructure.push(voterObj);
-
-  // If we went through all voters of a delegate, pop delegate and restart with new delegate
-  delegates.shift();
-
-  return recursiveCount(votestructure, current_delegate, true, delegates, domain, allDelegates);
 }
 
 voteCounting('xr8on9pchumcxr', 'main');
