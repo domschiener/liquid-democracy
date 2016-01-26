@@ -44,11 +44,13 @@ Template.delegates.events({
   },
   'click .delegatePerson': function() {
     var domain = $('.delegateExpertise').select2("val");
-    var user = Meteor.userId();
+    var user = Meteor.user();
     var delegate = this._id;
 
     Meteor.call('delegation', domain, user, delegate, function(error, success) {
-      console.log(success);
+      if (error) {
+        $('.delegates').append('<div class="alert alert-danger delegationError"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>ERROR!</strong>' + error.message + ' </div>')
+      }
     });
   }
 });

@@ -220,10 +220,38 @@ Meteor.methods({
       return false;
     }
 
-    Meteor.users.update({_id: user}, {$push: {'delegates': {'delegate': delegate, 'domain': domain}}});
+    user.delegates.forEach(function(existingDelegate) {
+      for (var i = 0; i < domain.length; i++) {
+        for (var j = 0; j < existingDelegate.domain.length; j++) {
+          if (existingDelegate.domain[j] === domain[i]) {
+            throw new Meteor.Error('existingDelegation', ' You already have a delegation for this Domain. Change your existing delegation relationships or modify the new delegation you intend to make. ');
+          }
+        }
+      }
+    })
+
+    // // If the current user is a delegate, check for circular delegation
+    // if (user.delegate) {
+    //   var userDelegate = Delegates.findOne({_id: user._id});
+    //
+    //   // Circular delegation can only happen if user has delegations
+    //   if (userDelegate.delegations) {
+    //     var currDelegate = Delegates.findOne({_id: delegate});
+    //     var currDelegations = currDelegate.delegations;
+    //
+    //     // Circular delegation only possible if to delegated person has delegations already
+    //     if (currDelegations) {
+    //       currDelegations.forEach(function(delegation) {
+    //
+    //       })
+    //     }
+    //   }
+    // }
+
+    Meteor.users.update({_id: user._id}, {$push: {'delegates': {'delegate': delegate, 'domain': domain}}});
 
     for (var i = 0; i < domain.length; i++) {
-      Delegates.update({_id: delegate}, {$push: {'delegations': {'domain': domain[i], 'voter': user}}})
+      Delegates.update({_id: delegate}, {$push: {'delegations': {'domain': domain[i], 'voter': user._id}}})
     }
 
     return true;
