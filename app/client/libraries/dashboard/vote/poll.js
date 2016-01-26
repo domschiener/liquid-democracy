@@ -16,7 +16,8 @@ Template.poll.events({
 
     Meteor.call('new_vote', option, user, delegate, poll, function(error) {
       if (!error) {
-        Router.go('voted');
+        var path = "/dashboard/vote/" + poll + "/voted";
+        Router.go(path);
       }
     });
   }

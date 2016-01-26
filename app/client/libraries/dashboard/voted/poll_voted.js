@@ -17,6 +17,7 @@ Template.voted.helpers({
   },
   time_limit: function() {
     var current_poll = this;
+
     if (current_poll.poll.isvoted) {
       Session.set('timer','2015/01/01');
     }

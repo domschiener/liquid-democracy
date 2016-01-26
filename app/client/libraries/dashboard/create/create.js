@@ -78,8 +78,8 @@ Template.create.events({
 
     // Calculating Deadline of Poll
     var cur_date = Date.now();
-    var days = (poll['limit_days']) * 86400000;
-    var hours = (poll['limit_hours']) * 3600000;
+    var days = 1000 * 60 * 2//(poll['limit_days']) * 86400000;
+    var hours = 0//(poll['limit_hours']) * 3600000;
     var deadline = cur_date + days + hours;
 
     Meteor.call('new_poll', poll, deadline, function(error, success) {
@@ -106,13 +106,11 @@ Template.more_options.events({
     var numOptions = Session.get('NumberOfOptions') + 1;
 
     if (numOptions <= 10) {
-      console.log("success");
       //Create new DOM element for additional Option
       var new_option = document.createElement("div");
       new_option.className = "form-group";
       new_option.innerHTML = '<input id="option-' + numOptions + '" type="text" value="" maxlength="20" placeholder="Option ' + numOptions +'" class="form-control poll_options" />';
       document.getElementById('options').appendChild(new_option);
-      console.log("success2");
       Session.set('NumberOfOptions', numOptions);
     }
   },

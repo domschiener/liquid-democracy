@@ -1,5 +1,5 @@
 function voteCounting(poll_id, domain) {
-  var votes = Uservotes.find({_id: poll_id}).fetch();
+  var votes = Uservotes.findOne({_id: poll_id});
 
   var voters = [];
   var delegates = [];
@@ -12,64 +12,135 @@ function voteCounting(poll_id, domain) {
     }
   }
 
-  var delegateVoters = Delegates.findOne({_id: delegates[0].voter});
+  //For Each delegate, we get all connected delegations and input into new JSON object
+  var output = voters.slice();
+  console.log(output);
+  delegates.forEach(function(delegate) {
+    var currDelegate = Delegates.findOne({_id: delegate.voter});
+    if (currDelegate.delegations) {
+      output.push(recursiveCount(delegates, voters, currDelegate, delegate, domain));
+    }
+    else {
+      output.push(delegate);
+    }
+  })
 
-  return resursiveCount(voters, delegateVoters, false, delegates, domain);
+  //Then we count all of the voters in the new JSON object
+  var count = 0;
+  output.forEach(function(voter) {
+    count += finalCount(voter);
+  })
+
+  poll.update({_id: poll_id}, {$set: {'outcome': output, 'count': count}});
 }
 
-function resursiveCount(votestructure, current_delegate, pop_delegate, delegates, domain) {
-  // Exit function, if all delegates searched, return the JSON output
-  if (delegates.length < 1) {
-    return votestructure;
+/**
+  *   Recursive Count Helper Functions
+  **/
+
+function voterVoted(votestructure, voter) {
+  var found = false;
+
+  votestructure.forEach(function(curr_voter) {
+    if (curr_voter.voter === voter) {
+      found = true;
+    }
+  });
+
+  return found;
+}
+
+function delegateVoted(votestructure, voter) {
+  var found = false;
+
+  votestructure.forEach(function(curr_voter) {
+    if (curr_voter.voter === voter) {
+      found = true;
+    }
+  });
+
+  return found;
+}
+
+function hasDomain(domains, voter) {
+  var found = false;
+
+  domains.forEach(function(domain) {
+    if (voter.domain === domain) {
+      found = true;
+    }
+  })
+
+  return found;
+}
+
+function finalCount(voter) {
+  var count = 1;
+  if (voter.delegates) {
+    voter.delegates.forEach(function(delegVoter) {
+      if (delegVoter.delegates) {
+        count += finalCount(delegVoter);
+      }
+      else {
+        count += 1;
+      }
+    });
   }
 
-  // If we want through all voters of a delegate, pop delegate and restart with new delegate
-  if (pop_delegate) {
-    delegates.shift();
-    current_delegate = Delegates.findOne({_id: delegates[0].voter});
-  }
+  return count;
+}
+
+
+/**
+  *   Recursive Count Function
+  **/
+
+function recursiveCount(delegateVoters, votersVoters, delegate, curVoter, domain) {
 
   var voterObj = {
-    'voter': current_delegate.voter;
-    'option': current_delegate.option ? current_delegate.option : delegates[0].option;
-    'votedAt': current_delegate.votedAt ? current_delegate.votedAt : delegates[0].votedAt;
-    'delegates': [];
+    'voter': delegate._id,
+    'option': curVoter.option,
+    'delegates': []
   }
-
-  var containsDelegates = false;
-
-  for (var j = 0; j < current_delegate.delegations.length; j++) {
-    var current_voter = Meteor.users.findOne({_id: current_delegate.delegations[j]['voter']});
-
-    // If current_voter is a Delegate herself, we call the function recursively counting voters
-    if (current_voter.delegate) {
-      containsDelegates = true;
-      voterObj.delegates.push(recursiveCount());
+  delegate.delegations.forEach(function(delegVoter) {
+    // If not domain-delegation, don't count Voter
+    if (hasDomain(domain, delegVoter) === false) {
+      return false;
     }
-    else if (current_delegate.delegations[j].domain === domain && voters.indexOf(current_delegate.delegations[j].user) === -1) {
-      // If voter is not delegate himself, we create a new object and append to delegate voterObj
-      var newVoter = {};
-      newVoter['voter'] = current_delegate.delegations[j].user
-      newVoter['option'] = delegates[0].option;
-      newVoter['votedAt'] = delegates[0].votedAt;
-      newVoter['delegates'] = [];
 
+    // Retrieve current voter object
+    var voter = Meteor.users.findOne({_id: delegVoter.voter});;
+
+    //
+    //  If the Voter is a Delegate, retrieve his information and get all delegations
+    //
+    if (voter.delegate &&
+        delegateVoted(delegateVoters, voter._id) !== true) {
+      // Retrieve new Delegate object
+      var newDelegate = Delegates.findOne({_id: voter._id});
+
+      // Go through delegations and return them to the current voterObj
+      voterObj.delegates.push(recursiveCount(delegateVoters, votersVoters, newDelegate, curVoter, domain));
+    }
+    //
+    //  If voter is not delegate himself, we create a new object and append to delegate voterObj
+    //
+    else if (voterVoted(votersVoters, voter._id) !== true) {
+      var newVoter = {};
+      newVoter['voter'] = voter._id;
+      newVoter['option'] = curVoter.option;
       voterObj.delegates.push(newVoter);
     }
+  })
 
-    IF NO MORE DELEGATES, RETURN THE VOTE STRUCTURE
-  }
-
-  // If delegates, return the voter obj, else pop delegate and start anew
-  if (containsDelegates) {
-    return voterObj;
-  }
-  votestructure.push(voterObj);
-  return recursiveCount()
+  return voterObj;
 }
+
+
 
 Meteor.startup(function() {
   //process.env.HTTP_FORWARDED_COUNT = 1;
+  //voteCounting('PybT7kh6y59hHNXgv', ['main']);
 
   function polldeadline(poll_input, _current_date) {
     var current_poll = poll_input;
@@ -78,8 +149,7 @@ Meteor.startup(function() {
     var timer = Meteor.setTimeout(function() {
       console.log("ID:" + current_poll._id + " Name: " + current_poll.poll.name + " went offline!");
       poll.update({_id:current_poll._id}, {$set: {'poll.isvoted': true, 'poll.isactive':false}});
-      Meteor.clearTimeout(timer);
-      //TODO: Make transaction that changes contract state
+      voteCounting(current_poll._id, current_poll.poll.domain);
     }, (current_poll.endDate - current_date));
 
     console.log("New timer set for Poll: " + current_poll._id);
@@ -103,7 +173,6 @@ Meteor.startup(function() {
 })
 
 
-
 Meteor.methods({
   new_poll: function(poll_data, deadline) {
     var start_date = Date.now();
@@ -112,6 +181,7 @@ Meteor.methods({
         Meteor.setTimeout(function() {
           console.log("ID: " + success + " went offline!");
           poll.update({_id: success}, {$set: {'poll.isvoted': true, 'poll.isactive':false}});
+          voteCounting(success, poll_data.domain);
         },(deadline - start_date));
         return success;
       }
