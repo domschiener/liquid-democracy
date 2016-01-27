@@ -24,7 +24,11 @@
         </div>
       </nav>
     </li>
-    <li><a>{{currentUser.profile.name}}</a></li>
+    {{#if currentUser.profile.name}}
+      <li><a>{{currentUser.profile.name}}</a></li>
+    {{else}}
+      <li><a>{{currentUser.services.github.username}}</a></li>
+    {{/if}}
     <li><a href="{{pathFor route='create'}}">Create Issue</a></li>
   </ul>
 

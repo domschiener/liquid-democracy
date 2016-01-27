@@ -220,6 +220,7 @@ Meteor.methods({
       return false;
     }
 
+    // Delegation Check: Only one Delegate per Domain possible
     user.delegates.forEach(function(existingDelegate) {
       for (var i = 0; i < domain.length; i++) {
         for (var j = 0; j < existingDelegate.domain.length; j++) {
@@ -259,5 +260,15 @@ Meteor.methods({
   revoke_delegate: function(delegateobj, user) {
     Meteor.users.update({_id: user}, {$pull: {'delegates': {'delegate': delegateobj._id}}});
     Delegates.update({_id: delegateobj._id}, {$pull: {'delegations': {'voter': user}}});
+  },
+  quit_delegate: function(delegateID) {
+    var delegate = Delegates.findOne({_id: delegateID});
+
+    delegate.delegations.forEach(function(delegation) {
+      Meteor.users.update({_id: delegation.voter}, {$pull: {'delegates': {'delegate': delegateID}}});
+    })
+
+    Meteor.users.update({_id: delegateID}, {$set: {'delegate': false, 'expertse': false}});
+    Delegates.remove({_id: delegateID});
   }
 })

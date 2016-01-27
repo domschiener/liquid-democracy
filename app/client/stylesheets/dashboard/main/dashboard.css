@@ -25,7 +25,7 @@
 .dashboard__top_title {
   font-size: 34px;
   margin: 35px 0;
-  word-spacing: -20px;
+  font-weight: 600;
 }
 
 .panel-title {
@@ -164,6 +164,7 @@
 .dashboard__stats_title {
   font-size: 34px;
   margin: 35px 0;
+  font-weight: 600;
 }
 
 .dashboard__stats_global {

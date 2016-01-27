@@ -1,6 +1,7 @@
 <template name="dashboard__activity">
   <div class="dashboard__top_title">
-    <span class="glyphicon glyphicon-user" aria-hidden="true"> Your Feed</span>
+    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+    Your Feed
   </div>
   <div class="dashboard__activity">
     <!-- <ol class="dashboard__feed">
@@ -51,7 +52,8 @@
 <template name="dashboard__issues">
   <div class="dashboard__issues">
     <div class="dashboard__top_title">
-      <span class="glyphicon glyphicon-flag" aria-hidden="true"> Recent Issues</span>
+      <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+      Latest Issues
     </div>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       {{#each polls}}
@@ -82,29 +84,34 @@
 </template>
 
 <template name="stats">
-  <div class="dashboard__stats">
-    <div class="container">
-      <div class="dashboard__stats_title">
-        <span class="glyphicon glyphicon-signal" aria-hidden="true"> Statistics</span>
-      </div>
-      <div class="dashboard__stats_global">
-        <div class="col-xs-3">
-          <h3 class="global__stats_title">Users</h3>
-          <p class="global__stats_item">{{all_users}}</p>
+  {{#if currentUser.delegate}}
+    <div class="dashboard__stats">
+      <div class="container">
+        <div class="dashboard__stats_title">
+          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+          Your Delegate Profile
         </div>
-        <div class="col-xs-3">
-          <h3 class="global__stats_title">Delegates</h3>
-          <p class="global__stats_item">15</p>
-        </div>
-        <div class="col-xs-3">
-          <h3 class="global__stats_title">Votes</h3>
-          <p class="global__stats_item">15</p>
-        </div>
-        <div class="col-xs-3">
-          <h3 class="global__stats_title">Issues</h3>
-          <p class="global__stats_item">15</p>
+        <div class="dashboard__stats_global">
+          <div class="col-xs-3">
+            <h3 class="global__stats_title">Delegations</h3>
+            <p class="global__stats_item">{{all_users}}</p>
+          </div>
+          <div class="col-xs-3">
+            <h3 class="global__stats_title">Votes Cast (cumulative)</h3>
+            <p class="global__stats_item">15</p>
+          </div>
+          <div class="col-xs-3">
+            <h3 class="global__stats_title">Issues Created</h3>
+            <p class="global__stats_item">15</p>
+          </div>
+          <div class="col-xs-3">
+            <h3 class="global__stats_title">Leave</h3>
+            <p class="global__stats_item">
+              <button id="quitDelegate" class="btn btn-lg btn-danger">Quit</button>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  {{/if}}
 </template>
