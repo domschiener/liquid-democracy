@@ -1,3 +1,7 @@
+/**
+  *   Main Vote Counting Function
+  **/
+
 function voteCounting(poll_id, domain) {
   var votes = Uservotes.findOne({_id: poll_id});
 
@@ -221,47 +225,68 @@ Meteor.methods({
     }
 
     // Delegation Check: Only one Delegate per Domain possible
-    user.delegates.forEach(function(existingDelegate) {
-      for (var i = 0; i < domain.length; i++) {
-        for (var j = 0; j < existingDelegate.domain.length; j++) {
-          if (existingDelegate.domain[j] === domain[i]) {
-            throw new Meteor.Error('existingDelegation', ' You already have a delegation for this Domain. Change your existing delegation relationships or modify the new delegation you intend to make. ');
+    if (user.delegates) {
+      user.delegates.forEach(function(existingDelegate) {
+        for (var i = 0; i < domain.length; i++) {
+          for (var j = 0; j < existingDelegate.domain.length; j++) {
+            if (existingDelegate.domain[j] === domain[i]) {
+              throw new Meteor.Error('existingDelegation', ' You already have a delegation for this Domain. Change your existing delegation relationships or modify the new delegation you intend to make. ');
+            }
           }
         }
+      })
+    }
+
+    // If the current user has outbound delegations, check for circular delegation
+    if (user.delegates) {
+      var userDelegate = Delegates.findOne({_id: user._id});
+
+      // Circular delegation only possible if user has inbound delegations
+      if (userDelegate.delegations) {
+        var newDelegate = Delegates.findOne({_id: delegate});
+
+        //TODO:
+          // Create this as a function
+          // Check if Outbound delegation matches Inbound delegation
+          // Do this for each and every delegate
+
+        // Circular delegation only possible if to-delegated user has delegations
+        console.log(newDelegate);
+        if (newDelegate.delegations) {
+
+          // Check if there are similar outbound Delegations
+          newDelegate.delegations.forEach(function(delegation) {
+            user.delegates.forEach(function(userDelegations) {
+              if (userDelegations.delegate === delegation.user &&
+                  userDelegations.domain === delegation.domain) {
+                console.log("success");
+                throw new Meteor.Error('circularDelegation', ' Your Delegation would creat a circular Delegation and is therefore currently not possible. Please check your delegation relationships and retry again.')
+              }
+            })
+          })
+        }
       }
-    })
+    }
 
-    // // If the current user is a delegate, check for circular delegation
-    // if (user.delegate) {
-    //   var userDelegate = Delegates.findOne({_id: user._id});
-    //
-    //   // Circular delegation can only happen if user has delegations
-    //   if (userDelegate.delegations) {
-    //     var currDelegate = Delegates.findOne({_id: delegate});
-    //     var currDelegations = currDelegate.delegations;
-    //
-    //     // Circular delegation only possible if to delegated person has delegations already
-    //     if (currDelegations) {
-    //       currDelegations.forEach(function(delegation) {
-    //
-    //       })
-    //     }
-    //   }
-    // }
-
-    Meteor.users.update({_id: user._id}, {$push: {'delegates': {'delegate': delegate, 'domain': domain}}});
-
+    // For every domain, we create a extra delegation entry in the User and Delegations collection
     for (var i = 0; i < domain.length; i++) {
+      Meteor.users.update({_id: user._id}, {$push: {'delegates': {'delegate': delegate, 'domain': domain[i]}}});
       Delegates.update({_id: delegate}, {$push: {'delegations': {'domain': domain[i], 'voter': user._id}}})
     }
 
     return true;
   },
   revoke_delegate: function(delegateobj, user) {
+    //
+    //  Removes a single Delegation Relationship
+    //
     Meteor.users.update({_id: user}, {$pull: {'delegates': {'delegate': delegateobj._id}}});
     Delegates.update({_id: delegateobj._id}, {$pull: {'delegations': {'voter': user}}});
   },
   quit_delegate: function(delegateID) {
+    //
+    //  Removes a Delegate as well as all delegations
+    //
     var delegate = Delegates.findOne({_id: delegateID});
 
     delegate.delegations.forEach(function(delegation) {

@@ -1,15 +1,16 @@
 # About the Tests
 
-More coming soon
+these tests were used in creating and refining the Vote Count function utilized for the application.
 
-Create a test function that basically creates 3 randomized json objects:
+## Generator.js
+
+Creates a test function that basically creates 3 randomized json objects (example JSON structure below):
   - One for the poll (uservotes)
   - One for the delegates
   - One for the users
 
-Interesting thought, how likely is it that the program will lead to a circle-delegation (Delegate A -> Delegate B -> Delegate C -> Delegate A)? This will lead to an infinite loop and the test functions breaking.
-
-Delegates:
+### Delegates:
+```
 {
    "_id":"bsJf6XjTKTPtnEFYb",
    "delegate":{
@@ -30,9 +31,11 @@ Delegates:
       }
    ]
 }
+```
 
 
-Uservotes:
+### Uservotes:
+```
 {
    "_id":"xsTKkv8yY29HY5cTY",
    "vote":[
@@ -54,9 +57,10 @@ Uservotes:
       }
    ]
 }
+```
 
-
-users
+### Uservotes
+```
 {
    "_id":"HvJf6XjTKTPtnEFYb",
    "createdAt":   ISODate("2016-01-19T16:35:48.335   Z"),
@@ -107,3 +111,4 @@ users
       }
    ]
 }
+```
