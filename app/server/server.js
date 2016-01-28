@@ -237,34 +237,38 @@ Meteor.methods({
       })
     }
 
-    // If the current user has outbound delegations, check for circular delegation
-    if (user.delegates) {
+    //
+    //   Function used for Circular Delegation Check
+    //   Checks if inbound delegation, matches outbound delegation
+    //
+    function traverseCheck(delegate, userDelegate, domain) {
+      // Circular delegation only possible nly if delegate has outbound delegations
+      var delegateProfile = Meteor.users.findOne({_id: delegate});
+      if (delegateProfile.delegates) {
+        userDelegate.delegations.forEach(function(userDelegations) {
+          if (userDelegations.voter === delegate &&
+              userDelegations.domain === domain) {
+            throw new Meteor.Error('circularDelegation', ' Your Delegation would creat a circular Delegation and is therefore currently not possible. Please check your delegation relationships and retry again.')
+          }
+          else if (userDelegations.domain === domain){
+            console.log(userDelegations.voter, delegation.delegate)
+            traverseCheck(delegation.delegate, userDelegate, domain)
+          }
+        })
+      }
+    }
+
+
+    // If the current user is a delegate herself, check for circular delegation
+    if (user.delegate) {
       var userDelegate = Delegates.findOne({_id: user._id});
 
-      // Circular delegation only possible if user has inbound delegations
+      // Circular delegation only possible if user already has existing inbound delegations
       if (userDelegate.delegations) {
-        var newDelegate = Delegates.findOne({_id: delegate});
-
-        //TODO:
-          // Create this as a function
-          // Check if Outbound delegation matches Inbound delegation
-          // Do this for each and every delegate
-
-        // Circular delegation only possible if to-delegated user has delegations
-        console.log(newDelegate);
-        if (newDelegate.delegations) {
-
-          // Check if there are similar outbound Delegations
-          newDelegate.delegations.forEach(function(delegation) {
-            user.delegates.forEach(function(userDelegations) {
-              if (userDelegations.delegate === delegation.user &&
-                  userDelegations.domain === delegation.domain) {
-                console.log("success");
-                throw new Meteor.Error('circularDelegation', ' Your Delegation would creat a circular Delegation and is therefore currently not possible. Please check your delegation relationships and retry again.')
-              }
-            })
-          })
-        }
+        // Check if inbound delegation matches outbound delegation
+        domain.forEach(function(delegDomain) {
+          traverseCheck(delegate, userDelegate, delegDomain);
+        })
       }
     }
 

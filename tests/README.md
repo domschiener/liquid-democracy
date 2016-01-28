@@ -59,15 +59,15 @@ Creates a test function that basically creates 3 randomized json objects (exampl
 }
 ```
 
-### Uservotes
+### Users Profile
 ```
 {
    "_id":"HvJf6XjTKTPtnEFYb",
    "createdAt":   ISODate("2016-01-19T16:35:48.335   Z"),
    "services":{
       "github":{
-         "id":9785885,
-         "accessToken":"ab589249c97cab582573460f84ee061464a1c98f",
+         "id":1,
+         "accessToken":"asdf",
          "email":"dom@fileyy.com",
          "username":"domschiener",
          "emails":[
@@ -82,7 +82,7 @@ Creates a test function that basically creates 3 randomized json objects (exampl
          "loginTokens":[
             {
                "when":               ISODate("2016-01-19T16:35:48.337               Z"),
-               "hashedToken":"L2Ye8DJemIJ/mfhqgYN30DdgxAJSUq41NSbH5neeUP4="
+               "hashedToken":"asdf"
             }
          ]
       }
