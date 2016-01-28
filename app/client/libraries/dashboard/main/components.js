@@ -5,7 +5,6 @@ Template.stats.helpers({
     return Delegates.findOne({_id: delegate_data});
   },
   delegateCount: function(delegations) {
-    console.log(delegations);
     return Object.keys(delegations).length;
   }
 })
@@ -13,7 +12,9 @@ Template.stats.helpers({
 Template.stats.events({
   'click #quitDelegate': function() {
     Meteor.call('quit_delegate', Meteor.userId(), function(error, success) {
-      console.log(error, success);
+      if (!error) {
+        console.log("You have successfully quit.")
+      }
     })
   }
 })

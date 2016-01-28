@@ -7,6 +7,16 @@ Template.personal.helpers({
   },
   delegateInfo: function(delegate_data) {
     return Delegates.findOne({_id: delegate_data});
+  },
+  delegateExpertise: function(user, delegate) {
+    var delegations = []
+    user.delegates.forEach(function(delegation) {
+      if (delegation.delegate == delegate.userID) {
+        delegations.push(delegation.domain);
+      }
+    })
+
+    return delegations;
   }
 })
 

@@ -22,12 +22,12 @@
                 <div class="delegate__profile-description">
                   <p>{{this.delegate.description}}</p>
                 </div>
-                <!-- <div class="delegate__profile-domains">
+                <div class="delegate__profile-domains">
                   <h5>Domain Expertise:</h5>
-                  {{#each .. this}}
+                  {{#each delegateExpertise currentUser delegate}}
                     <span class="label label-default">{{this}}</span>
                   {{/each}}
-                </div> -->
+                </div>
                 <div class="delegate__profile-button">
                   <button class="btn btn-success revoke_delegate"> Your Delegate</button>
                 </div>

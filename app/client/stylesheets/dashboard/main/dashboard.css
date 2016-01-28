@@ -170,6 +170,7 @@
 .dashboard__stats_global {
   background-color: #fff;
   padding: 0;
+  text-align: center;
   margin: 25px auto 50px;
 
 }
