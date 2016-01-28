@@ -1,8 +1,12 @@
 Meteor.subscribe('poll_listings');
 
 Template.stats.helpers({
-  all_users: function() {
-    return Meteor.users.find().count();
+  delegateInfo: function(delegate_data) {
+    return Delegates.findOne({_id: delegate_data});
+  },
+  delegateCount: function(delegations) {
+    console.log(delegations);
+    return Object.keys(delegations).length;
   }
 })
 

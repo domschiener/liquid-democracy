@@ -18,14 +18,14 @@ function voteCounting(poll_id, domain) {
 
   //For Each delegate, we get all connected delegations and input into new JSON object
   var output = voters.slice();
-  console.log(output);
-  delegates.forEach(function(delegate) {
-    var currDelegate = Delegates.findOne({_id: delegate.voter});
+
+  delegates.forEach(function(delegateVote) {
+    var currDelegate = Delegates.findOne({_id: delegateVote.voter});
     if (currDelegate.delegations) {
-      output.push(recursiveCount(delegates, voters, currDelegate, delegate, domain));
+      output.push(recursiveCount(delegates, voters, currDelegate, delegateVote, domain));
     }
     else {
-      output.push(delegate);
+      output.push(delegateVote);
     }
   })
 
@@ -129,7 +129,8 @@ function recursiveCount(delegateVoters, votersVoters, delegate, curVoter, domain
     //
     //  If voter is not delegate himself, we create a new object and append to delegate voterObj
     //
-    else if (voterVoted(votersVoters, voter._id) !== true) {
+    else if (voter.delegate !== true &&
+            voterVoted(votersVoters, voter._id) !== true) {
       var newVoter = {};
       newVoter['voter'] = voter._id;
       newVoter['option'] = curVoter.option;
@@ -144,7 +145,6 @@ function recursiveCount(delegateVoters, votersVoters, delegate, curVoter, domain
 
 Meteor.startup(function() {
   //process.env.HTTP_FORWARDED_COUNT = 1;
-  //voteCounting('PybT7kh6y59hHNXgv', ['main']);
 
   function polldeadline(poll_input, _current_date) {
     var current_poll = poll_input;
@@ -248,7 +248,7 @@ Meteor.methods({
         userDelegate.delegations.forEach(function(userDelegations) {
           if (userDelegations.voter === delegate &&
               userDelegations.domain === domain) {
-            throw new Meteor.Error('circularDelegation', ' Your Delegation would creat a circular Delegation and is therefore currently not possible. Please check your delegation relationships and retry again.')
+            throw new Meteor.Error('circularDelegation', ' Your Delegation would create a circular Delegation and is therefore currently not possible. Please check your delegation relationships and retry again.')
           }
           else if (userDelegations.domain === domain){
             console.log(userDelegations.voter, delegation.delegate)

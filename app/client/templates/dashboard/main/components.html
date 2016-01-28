@@ -91,26 +91,34 @@
           <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
           Your Delegate Profile
         </div>
-        <div class="dashboard__stats_global">
-          <div class="col-xs-3">
-            <h3 class="global__stats_title">Delegations</h3>
-            <p class="global__stats_item">{{all_users}}</p>
+        {{#with delegateInfo currentUser._id}}
+          <div class="dashboard__stats_global">
+            <div class="col-xs-3">
+              <h3 class="global__stats_title">Delegations</h3>
+              <p class="global__stats_item">{{delegateCount this.delegations}}</p>
+            </div>
+            <div class="col-xs-3">
+              <h3 class="global__stats_title">Your Domains</h3>
+              {{#each this.delegate.domain}}
+                <span class="label label-default">{{this}}</span>
+              {{/each}}
+            </div>
+            <!-- <div class="col-xs-3">
+              <h3 class="global__stats_title">Votes Cast (cumulative)</h3>
+              <p class="global__stats_item">15</p>
+            </div> -->
+            <div class="col-xs-3">
+              <h3 class="global__stats_title">Issues Created</h3>
+              <p class="global__stats_item">15</p>
+            </div>
+            <div class="col-xs-3">
+              <h3 class="global__stats_title">Leave</h3>
+              <p class="global__stats_item">
+                <button id="quitDelegate" class="btn btn-lg btn-danger">Quit</button>
+              </p>
+            </div>
           </div>
-          <div class="col-xs-3">
-            <h3 class="global__stats_title">Votes Cast (cumulative)</h3>
-            <p class="global__stats_item">15</p>
-          </div>
-          <div class="col-xs-3">
-            <h3 class="global__stats_title">Issues Created</h3>
-            <p class="global__stats_item">15</p>
-          </div>
-          <div class="col-xs-3">
-            <h3 class="global__stats_title">Leave</h3>
-            <p class="global__stats_item">
-              <button id="quitDelegate" class="btn btn-lg btn-danger">Quit</button>
-            </p>
-          </div>
-        </div>
+        {{/with}}
       </div>
     </div>
   {{/if}}
