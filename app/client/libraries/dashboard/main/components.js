@@ -5,7 +5,12 @@ Template.stats.helpers({
     return Delegates.findOne({_id: delegate_data});
   },
   delegateCount: function(delegations) {
-    return Object.keys(delegations).length;
+    if (delegations) {
+      return Object.keys(delegations).length;
+    }
+    else {
+      return 0;
+    }
   }
 })
 

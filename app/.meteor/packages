@@ -19,7 +19,6 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 iron:router
 twbs:bootstrap
 accounts-twitter
-natestrauser:select2
 service-configuration
 maazalik:highcharts
 accounts-github
