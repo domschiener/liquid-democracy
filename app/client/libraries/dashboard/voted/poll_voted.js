@@ -7,13 +7,7 @@ Template.voted.onRendered(function() {
 
 Template.voted.helpers({
   vote_count: function() {
-    var current_poll = this;
-    if (current_poll.votes) {
-      return current_poll.votes.length;
-    }
-    else {
-      return 0;
-    }
+    return this.count;
   },
   time_limit: function() {
     var current_poll = this;

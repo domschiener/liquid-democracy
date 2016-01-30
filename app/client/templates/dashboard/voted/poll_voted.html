@@ -20,9 +20,14 @@
         <h4 class="vote_small">Voted</h4>
         <div class="quick_stats row">
           <div class="col-xs-6">
+
             <div class="vote_count">
               <p class="voted_title">Votes</p>
-              <p class="voted_content">{{vote_count}}</p>
+              {{#if this.poll.isvoted}}
+                <p class="voted_content">{{vote_count}}</p>
+              {{else}}
+                <p class="voted_content">Hidden</p>
+              {{/if}}
             </div>
           </div>
           <div class="col-xs-6">
