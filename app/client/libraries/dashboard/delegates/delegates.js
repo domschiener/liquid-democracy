@@ -1,8 +1,9 @@
-Template.delegates.onRendered(function() {
+Template.delegates.rendered = function() {
+  $.fn.modal.Constructor.prototype.enforceFocus = function() {};
   $(".select2").select2({
-    width: 200,
+    width: 200
   })
-});
+}
 
 Template.delegates.helpers({
   not_delegated: function(delegate_id) {
