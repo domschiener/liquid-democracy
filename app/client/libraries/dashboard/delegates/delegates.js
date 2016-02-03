@@ -26,8 +26,14 @@ Template.delegates.events({
   'click #delegate__submit': function() {
     var delegate = {}
     delegate['description'] = $("#personal__description").val();
-    delegate['domain'] = $("#personal_expertise").select2("val");
+    delegate['domain'] = $("#personal_expertise").val();
 
+    //If no description or domain entered, return false
+    if (delegate['description'] === '' || delegate['domain'] === null) {
+      return false;
+    }
+    $('#becomeDelegate').modal('hide');
+    
     var user = Meteor.users.findOne({_id: Meteor.userId()});
     delegate['userID'] = user._id;
     delegate['username'] = user.services.github.username;
@@ -36,15 +42,17 @@ Template.delegates.events({
       delegate['profile_pic'] = result.data.avatar_url;
       delegate['name'] = result.data.name;
       delegate['link'] = result.data.html_url;
+
       Meteor.call('new_delegate', delegate, function(error, success) {
         if (!error) {
+
           console.log("You are a Delegate now! Use your powers wisely");
         }
       });
     })
   },
   'click .delegatePerson': function() {
-    var domain = $('.delegateExpertise').select2("val");
+    var domain = $('.delegateExpertise').val();
     var user = Meteor.user();
     var delegate = this._id;
 

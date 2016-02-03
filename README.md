@@ -7,3 +7,7 @@ If you are unfamiliar with what Liquid Democracy is, then please check out [this
 For another prototype of voting on Ethereum, check out [PublicVotes](http://publicvotes.org)
 
 This project is sponsored by [Wanxiang Labs](http://www.blockchainlabs.org/blockgrant-x-en/)
+
+
+TODO
+  Check that delegate has entereded Description + Domain

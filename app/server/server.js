@@ -293,9 +293,11 @@ Meteor.methods({
     //
     var delegate = Delegates.findOne({_id: delegateID});
 
-    delegate.delegations.forEach(function(delegation) {
-      Meteor.users.update({_id: delegation.voter}, {$pull: {'delegates': {'delegate': delegateID}}});
-    })
+    if (delegate.delegations) {
+      delegate.delegations.forEach(function(delegation) {
+        Meteor.users.update({_id: delegation.voter}, {$pull: {'delegates': {'delegate': delegateID}}});
+      })
+    }
 
     Meteor.users.update({_id: delegateID}, {$set: {'delegate': false, 'expertse': false}});
     Delegates.remove({_id: delegateID});
