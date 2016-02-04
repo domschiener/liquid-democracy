@@ -1,5 +1,4 @@
 Template.delegates.rendered = function() {
-  $.fn.modal.Constructor.prototype.enforceFocus = function() {};
   $(".select2").select2({
     width: 200
   })
@@ -23,6 +22,11 @@ Template.delegates.helpers({
 })
 
 Template.delegates.events({
+  'click .delegate__delegate': function() {
+    $(".select2").select2({
+      width: 200
+    })
+  },
   'click #delegate__submit': function() {
     var delegate = {}
     delegate['description'] = $("#personal__description").val();
@@ -33,7 +37,7 @@ Template.delegates.events({
       return false;
     }
     $('#becomeDelegate').modal('hide');
-    
+
     var user = Meteor.users.findOne({_id: Meteor.userId()});
     delegate['userID'] = user._id;
     delegate['username'] = user.services.github.username;
@@ -45,16 +49,19 @@ Template.delegates.events({
 
       Meteor.call('new_delegate', delegate, function(error, success) {
         if (!error) {
-
           console.log("You are a Delegate now! Use your powers wisely");
         }
       });
     })
   },
   'click .delegatePerson': function() {
-    var domain = $('.delegateExpertise').val();
+    var id = '#' + this._id+ "-domain";
+    console.log(id);
+    var domain = $(id).val();
     var user = Meteor.user();
     var delegate = this._id;
+    console.log(domain);
+    return true;
 
     Meteor.call('delegation', domain, user, delegate, function(error, success) {
       if (error) {

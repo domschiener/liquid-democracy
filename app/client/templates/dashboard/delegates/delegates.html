@@ -77,7 +77,7 @@
               {{/each}}
             </div>
             <div class="delegate__profile-button">
-              <button name="success" class="btn btn-success" data-toggle="modal" data-target="#{{this._id}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
+              <button name="success" class="btn btn-success delegate__delegate" data-toggle="modal" data-target="#{{this._id}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Delegate</button>
             </div>
           </div>
 
@@ -97,7 +97,7 @@
                     <!-- Domain Option -->
                     <p class="personal__title">Choose Domains to Delegate To</p>
                     <div class="domain_options">
-                      <select class="delegateExpertise select2" multiple="multiple">
+                      <select id="{{this._id}}-domain" class="delegateExpertise select2" multiple="multiple">
                         {{#each this.delegate.domain}}
                           <option value="{{this}}">{{this}}</option>
                         {{/each}}
