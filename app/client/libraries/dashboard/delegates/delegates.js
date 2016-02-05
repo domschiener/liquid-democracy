@@ -56,12 +56,10 @@ Template.delegates.events({
   },
   'click .delegatePerson': function() {
     var id = '#' + this._id+ "-domain";
-    console.log(id);
+
     var domain = $(id).val();
     var user = Meteor.user();
     var delegate = this._id;
-    console.log(domain);
-    return true;
 
     Meteor.call('delegation', domain, user, delegate, function(error, success) {
       if (error) {

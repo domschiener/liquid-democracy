@@ -13,6 +13,9 @@ Template.poll.events({
     var user = Meteor.userId();
     var delegate = Meteor.user().delegate;
     var poll = this._id;
+    if (poll === undefined) {
+      poll = $(event.currentTarget).attr('pollid');
+    }
 
     Meteor.call('new_vote', option, user, delegate, poll, function(error) {
       if (!error) {

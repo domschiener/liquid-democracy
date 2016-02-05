@@ -2,8 +2,13 @@
   *   Main Vote Counting Function
   **/
 
-function voteCounting(poll_id, domain) {
+function voteCounting(poll_id, domain, options) {
   var votes = Uservotes.findOne({_id: poll_id});
+
+  if (votes.vote === undefined) {
+    poll.update({_id: poll_id}, {$set: {'outcome': [], 'count': 0}});
+    return true;
+  }
 
   var voters = [];
   var delegates = [];
@@ -30,10 +35,11 @@ function voteCounting(poll_id, domain) {
   })
 
   //Then we count all of the voters in the new JSON object
+  var output = finalCount(output, options);
   var count = 0;
-  output.forEach(function(voter) {
-    count += finalCount(voter);
-  })
+  // output.forEach(function(voter) {
+  //   count += finalCount(voter);
+  // })
 
   poll.update({_id: poll_id}, {$set: {'outcome': output, 'count': count}});
 }
@@ -78,7 +84,35 @@ function hasDomain(domains, voter) {
   return found;
 }
 
-function finalCount(voter) {
+function finalCount(allVoters, options) {
+  var result = {};
+  result.name = "outcome";
+  result.results = [];
+
+  // for each option, we add a new entry into the result object
+  options.forEach(function(option) {
+    var newOption = {};
+    newOption.name = option;
+    newOption.count = 0;
+    newOption.results = [];
+    result.results.push(newOption);
+  })
+
+  // sort voters to options and count the total
+  allVoters.forEach(function(voter) {
+    for (var i = 0; i < options.length; i++) {
+      if (options[i] === voter.option) {
+        var index = options.indexOf(options[i]);
+        result.results[index].results.push(voter);
+        result.results[index].count += delegateCount(voter);
+      }
+    }
+  })
+
+  return result;
+}
+
+function delegateCount(voter) {
   var count = 1;
   if (voter.delegates) {
     voter.delegates.forEach(function(delegVoter) {
@@ -153,7 +187,7 @@ Meteor.startup(function() {
     var timer = Meteor.setTimeout(function() {
       console.log("ID:" + current_poll._id + " Name: " + current_poll.poll.name + " went offline!");
       poll.update({_id:current_poll._id}, {$set: {'poll.isvoted': true, 'poll.isactive':false}});
-      voteCounting(current_poll._id, current_poll.poll.domain);
+      voteCounting(current_poll._id, current_poll.poll.domain, current_poll.poll.options);
     }, (current_poll.endDate - current_date));
 
     console.log("New timer set for Poll: " + current_poll._id);
@@ -185,7 +219,7 @@ Meteor.methods({
         Meteor.setTimeout(function() {
           console.log("ID: " + success + " went offline!");
           poll.update({_id: success}, {$set: {'poll.isvoted': true, 'poll.isactive':false}});
-          voteCounting(success, poll_data.domain);
+          voteCounting(success, poll_data.domain, poll_data.options);
         },(deadline - start_date));
         return success;
       }

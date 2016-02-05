@@ -35,7 +35,7 @@
         {{else}}
           <div class="multi_options row">
           {{#each poll.options}}
-            <button id="{{this}}" class="btn multi_option option_click"><h3 id="{{this}}">{{this}}</h3></button>
+            <button pollid="{{../_id}}" id="{{this}}" class="btn multi_option option_click"><h3 id="{{this}}">{{this}}</h3></button>
           {{/each}}
           </div>
         {{/if}}

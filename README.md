@@ -11,3 +11,5 @@ This project is sponsored by [Wanxiang Labs](http://www.blockchainlabs.org/block
 
 TODO
   Check that delegate has entereded Description + Domain
+  Make sure that two options do not equal
+  If vote in multiple domains, and voter has two delegations (in two different domains), only count one
