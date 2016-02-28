@@ -17,6 +17,16 @@ Template.personal.helpers({
     })
 
     return delegations;
+  },
+  domainRelated: function(delegateDomain, issueDomain) {
+    issueDomain.forEach(function(domain) {
+      if (domain === delegateDomain) {
+        console.log(domain, delegateDomain)
+        return true;
+      }
+    })
+
+    return false;
   }
 })
 
@@ -26,5 +36,10 @@ Template.personal.events({
     var user = Meteor.userId();
 
     Meteor.call('revoke_delegate', delegate, user);
+  },
+  'click .panel_button': function(event) {
+    var poll_id = event.currentTarget.id;
+    console.log(poll_id);
+    Router.go('voted', {_id: poll_id})
   }
 })

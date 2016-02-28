@@ -82,7 +82,7 @@ Template.create.events({
     var hours = 0//(poll['limit_hours']) * 3600000;
     var deadline = cur_date + days + hours;
 
-    Meteor.call('new_poll', poll, deadline, function(error, success) {
+    Meteor.call('new_poll', poll, deadline, Meteor.userId(), function(error, success) {
       if (!error) {
         Router.go('poll', {_id: success});
       }

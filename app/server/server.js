@@ -5,7 +5,7 @@
 function voteCounting(poll_id, domain, options) {
   var votes = Uservotes.findOne({_id: poll_id});
 
-  if (votes.vote === undefined) {
+  if (votes === undefined) {
     poll.update({_id: poll_id}, {$set: {'outcome': [], 'count': 0}});
     return true;
   }
@@ -197,6 +197,7 @@ Meteor.startup(function() {
   // set the deadline for each poll on server startup
   //
   var active_polls = poll.find({'poll.isvoted': false}).fetch();
+  console.log(active_polls);
   for (var i = 0; i < active_polls.length; i++) {
     var current_poll = active_polls[i];
     var current_date = Date.now();
@@ -212,10 +213,15 @@ Meteor.startup(function() {
 
 
 Meteor.methods({
-  new_poll: function(poll_data, deadline) {
+  new_poll: function(poll_data, deadline, creator) {
     var start_date = Date.now();
+
     return poll.insert({poll: poll_data, endDate: deadline, createdAt: start_date}, function(error, success) {
       if (!error) {
+        // Save the poll as a reference in delegate profile
+        Delegates.update({_id: creator}, {$push: {'polls': {'poll': success, 'title': poll_data.name, 'domain': poll_data.domain}}})
+
+        // Set the deadline for the poll
         Meteor.setTimeout(function() {
           console.log("ID: " + success + " went offline!");
           poll.update({_id: success}, {$set: {'poll.isvoted': true, 'poll.isactive':false}});
@@ -243,7 +249,7 @@ Meteor.methods({
     );
   },
   new_delegate: function(data) {
-    Meteor.users.update({_id: data.userID}, {$set: {'delegate': true, 'description': data.description, 'profile_pic': data.profile_pic, 'expertise': data.domain}});
+    Meteor.users.update({_id: data.userID}, {$set: {'profile.name': data.name, 'delegate': true, 'description': data.description, 'profile_pic': data.profile_pic, 'expertise': data.domain}});
 
     return Delegates.insert({_id: data.userID, 'delegate': data}, function(error, success) {
       return success;
@@ -262,10 +268,8 @@ Meteor.methods({
     if (user.delegates) {
       user.delegates.forEach(function(existingDelegate) {
         for (var i = 0; i < domain.length; i++) {
-          for (var j = 0; j < existingDelegate.domain.length; j++) {
-            if (existingDelegate.domain[j] === domain[i]) {
-              throw new Meteor.Error('existingDelegation', ' You already have a delegation for this Domain. Change your existing delegation relationships or modify the new delegation you intend to make. ');
-            }
+          if (existingDelegate.domain === domain[i]) {
+            throw new Meteor.Error('existingDelegation', ' You already have a delegation for this Domain. Change your existing delegation relationships or modify the new delegation you intend to make. ');
           }
         }
       })
@@ -276,7 +280,7 @@ Meteor.methods({
     //   Checks if inbound delegation, matches outbound delegation
     //
     function traverseCheck(delegate, userDelegate, domain) {
-      // Circular delegation only possible nly if delegate has outbound delegations
+      // Circular delegation only possible if delegate has outbound delegations
       var delegateProfile = Meteor.users.findOne({_id: delegate});
       if (delegateProfile.delegates) {
         userDelegate.delegations.forEach(function(userDelegations) {
@@ -285,7 +289,6 @@ Meteor.methods({
             throw new Meteor.Error('circularDelegation', ' Your Delegation would create a circular Delegation and is therefore currently not possible. Please check your delegation relationships and retry again.')
           }
           else if (userDelegations.domain === domain){
-            console.log(userDelegations.voter, delegation.delegate)
             traverseCheck(delegation.delegate, userDelegate, domain)
           }
         })

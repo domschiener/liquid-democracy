@@ -44,7 +44,13 @@ Template.delegates.events({
 
     HTTP.get('https://api.github.com/users/' + delegate['username'], function(error, result) {
       delegate['profile_pic'] = result.data.avatar_url;
-      delegate['name'] = result.data.name;
+      delegate['name'] = delegate['username'];
+
+      // If User has specified first and last name, get it
+      if (result.data.name) {
+        delegate['name'] = result.data.name;
+      }
+
       delegate['link'] = result.data.html_url;
 
       Meteor.call('new_delegate', delegate, function(error, success) {

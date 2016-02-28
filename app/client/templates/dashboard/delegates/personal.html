@@ -24,9 +24,7 @@
                 </div>
                 <div class="delegate__profile-domains">
                   <h5>Domain Expertise:</h5>
-                  {{#each delegateExpertise currentUser delegate}}
-                    <span class="label label-default">{{this}}</span>
-                  {{/each}}
+                  <span class="label label-default">{{../domain}}</span>
                 </div>
                 <div class="delegate__profile-button">
                   <button class="btn btn-success revoke_delegate"> Your Delegate</button>
@@ -66,22 +64,25 @@
                   <p>Issues Created</p>
                 </div>
 
-                <div class="panel-group" id="delegateIssues" role="tablist" aria-multiselectable="true">
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="issueOne1">
-                      <h2 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#delegateIssues" href="#collapseIssueOne1" aria-expanded="true" aria-controls="collapseIssueOne1">
-                          How will we manage this?
-                        </a>
-                      </h2>
-                    </div>
-                    <div id="collapseIssueOne1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="issueOne1">
-                      <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee.
+                <div class="panel-group" id="delegateIssues{{this._id}}" role="tablist">
+                  {{#each this.polls}}
+                    {{#unless domainRelated ../../domain this.domain}}
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="{{this.poll}}">
+                          <h2 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#delegateIssues{{this._id}}" href="#collapse{{this.poll}}" aria-expanded="true" aria-controls="collapse{{this.poll}}">
+                              {{this.title}}
+                            </a>
+                          </h2>
+                        </div>
+                        <div id="collapse{{this.poll}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{this.poll}}">
+                          {{#with this.poll}}
+                            <a href="{{pathFor route='poll'}}" id="{{this}}" type="button" class="btn btn-success panel_button">View</a>
+                          {{/with}}
+                        </div>
                       </div>
-                      <button type="button" class="btn btn-success panel_button">View</button>
-                    </div>
-                  </div>
+                    {{/unless}}
+                  {{/each}}
                 </div>
               </div>
               <!-- -->

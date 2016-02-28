@@ -40,8 +40,8 @@
   *   Dashboard Activity
   **/
 
-.dashboard__activity {
-  height: 500px;
+.dashboard__past {
+  min-height: 500px;
   width: 500px;
   padding: 0;
   margin-right: 25px;

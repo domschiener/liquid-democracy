@@ -30,7 +30,9 @@ Router.route('/dashboard', {
   template: 'dashboard',
   data: function() {
     var active_polls = poll.find({'poll.isvoted': false}, {sort: {createdAt: -1}}).fetch();
-    return {'polls': active_polls};
+    var past_polls = poll.find({'poll.isvoted': true}, {sort: {createdAt: -1}}).fetch();
+    // Only return the last 10 issues
+    return {'polls': active_polls.slice(0, 10), 'pastPolls': past_polls.slice(0, 10)};
   },
   onBeforeAction: function() {
     var user =  Meteor.userId();
@@ -70,15 +72,24 @@ Router.route('/dashboard/vote/:_id', {
   },
   onBeforeAction: function() {
     var user =  Meteor.userId();
+
+    // If no user logged in, redirect to join
     if(user) {
       this.next();
     } else {
       Router.go('join');
     }
+
+    var current_poll = poll.findOne({_id: this.params._id});
+    if (current_poll) {
+      if (current_poll.poll.isvoted) {
+        Router.go('voted', {_id: this.params._id});
+      }
+    }
   }
 });
 
-Router.route('/dashboard/vote/:_id/voted', {
+Router.route('/dashboard/results/:_id/', {
   name: 'voted',
   layoutTemplate: 'dashboard_menu',
   template: 'voted',
@@ -91,6 +102,13 @@ Router.route('/dashboard/vote/:_id/voted', {
       this.next();
     } else {
       Router.go('join');
+    }
+
+    var current_poll = poll.findOne({_id: this.params._id});
+    if (current_poll) {
+      if (current_poll.poll.isvoted === false) {
+        Router.go('poll', {_id: this.params._id});
+      }
     }
   }
 });
